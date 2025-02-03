@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "./_components/Footer";
+import { Navigation } from "./_components/Navigation";
 
 const font = Noto_Sans({ subsets: ["latin"] });
 
@@ -25,7 +26,8 @@ export default function RootLayout({
       <body className={`${font.className} font-sans antialiased`}>
         {/* Popover（ヘッダーナビ）を開いている状態でPopoverコンテンツ外をクリックした時にPopoverが閉じないバグ対策用のdiv
          詳細: https://github.com/tailwindlabs/headlessui/issues/2752#issuecomment-1724096430 */}
-        <div>
+        <div className="relative">
+          <Navigation />
           {children}
           <Footer />
         </div>
