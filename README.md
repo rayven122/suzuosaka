@@ -1,66 +1,83 @@
-# シンプルなコーポレートサイト
+# デバッグモンキーズ公式HP
 
-![](public/img-cover.png)
+https://debug-monkeys.com/
 
-microCMS 公式のシンプルなコーポレートサイトのテンプレートです。
-サイト内のお問い合わせ送信先として CRM である [HubSpot](https://www.hubspot.jp/) を利用しています。
+## 使用技術
 
-## 動作環境
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [MicroCMS](https://microcms.io/)
+- [AWS Amplify](https://aws.amazon.com/jp/amplify/)
 
-Node.js 18 以上
+## ディレクトリ構成
 
-## 環境変数の設定
-
-ルート直下に`.env`ファイルを作成し、下記の情報を入力してください。
-
-```
-MICROCMS_API_KEY=xxxxxxxxxx
-MICROCMS_SERVICE_DOMAIN=xxxxxxxxxx
-BASE_URL=xxxxxxxxxx
-HUBSPOT_PORTAL_ID=xxxxxxxx
-HUBSPOT_FORM_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-```
-
-`MICROCMS_API_KEY`  
-microCMS 管理画面の「サービス設定 > API キー」から確認することができます。
-
-`MICROCMS_SERVICE_DOMAIN`  
-microCMS 管理画面の URL（https://xxxxxxxx.microcms.io）の xxxxxxxx の部分です。
-
-`BASE_URL`
-デプロイ先の URL です。プロトコルから記載してください。
-
-例）  
-開発環境 → http://localhost:3000  
-本番環境 → https://xxxxxxxx.vercel.app/ など
-
-`HUBSPOT_PORTAL_ID`
-HubSpot のアカウント ID
-
-`HUBSPOT_FORM_ID`
-HubSpot のフォームに割り当てられる ID
-
-## 開発の仕方
-
-1. パッケージのインストール
-
-```bash
-npm install
+```sh
+.
+├── public                # 画像及びPDFなど
+└── src
+    ├── app
+    │   ├── _components   # 汎用的なコンポーネント
+    │   ├── _functions    # 汎用的な関数
+    │   └── detail
+    │       └── [game]    # 詳細ページ
+    ├── libs              # ライブラリ
+    ├── schema            # microCMSのAPIスキーマ
+    └── types             # 型情報
 ```
 
-2. 開発環境の起動
+## 全体の概要
 
-```bash
-npm run dev
-```
+パッケージマネージャはpnpmを使用。
 
-3. 開発環境へのアクセス  
-   [http://localhost:3000](http://localhost:3000)にアクセス
+Next.jsでは[App Router](https://nextjs.org/docs/app)を使用する。
 
-## 解説ドキュメント
+基本的にサーバーコンポーネント（SC）を使用。やむを得ない場合のみクライアントコンポーネント（CC）を使用する。
 
-- [コンテンツ管理](https://github.com/microcmsio/nextjs-simple-corporate-site-template/blob/main/docs/content-management.md)
-- [画面プレビューの設定](https://github.com/microcmsio/nextjs-simple-corporate-site-template/blob/main/docs/content-preview.md)
-- [ディレクトリ構成](https://github.com/microcmsio/nextjs-simple-corporate-site-template/blob/main/docs/directory-structure.md)
-- [HubSpot の準備](https://github.com/microcmsio/nextjs-simple-corporate-site-template/blob/main/docs/hubspot-setting.md)
-- [Vercel へのデプロイ](https://github.com/microcmsio/nextjs-simple-corporate-site-template/blob/main/docs/vercel-deploy.md)
+スタイリングはTailwindCSSを使用する。
+
+MicroCMSでゲームの情報を管理し、ゲーム一覧と記事ページの中身はゲーム情報APIから動的に生成する。
+
+## TailwinCSSの[HeadlessUI](https://headlessui.com/)
+
+TailwindCSS公式が提供している、アクセシビリティ対応もしてくれている便利コンポーネント集。
+
+ヘッダーメニューではHeadlessUIの[Popover](https://headlessui.com/react/popover)を使用。
+
+HeadlessUIはCCのみ使用可能なため、Headerコンポーネント(SC)でHeaderClientコンポーネント（CC）を呼び出している。
+
+### [menu](https://headlessui.com/react/menu)との違い
+
+menuはタブ選択時にはボタンがfocusできるが、中の選択肢にはfocusしない。矢印上下キーで選択肢を選択できるようになっている。
+
+ヘッダーメニューではメニュー内部もfocusできるpopoverの方が適している。
+
+App RouterでPopoverを開いている状態でPopoverコンテンツ外をクリックした時にPopoverが閉じないバグあり。対策用のdivを追加する必要がある。  
+参照：[HeadlessUIのissueコメント](https://github.com/tailwindlabs/headlessui/issues/2752#issuecomment-1724096430)
+
+## MicroCMSから読み込んだ記事のスタイリング
+
+MicroCMSではリッチエディタかHTML記述を選べる（組み合わせも可）。ID指定などをしたい場合はHTMLで記載する。  
+参照：[Title: リッチエディタを使いつつ一部はHTMLで入稿する | microCMSブログ](https://blog.microcms.io/input-richeditor-and-html/)
+
+MicroCMSのリッチエディタで作成した記事は[html-react-parser](https://github.com/remarkablemark/html-react-parser)でDOMに変換後、[@tailwind/typography](https://github.com/tailwindlabs/tailwindcss-typography)を使用してスタイリングする。  
+これはTailwind公式が提供する、タグ要素を適切にレイアウトされたライブラリ。
+
+さらにカスタムが必要であれば`prose`でクラスを指定、または`tailwind.config`に`prose`の指定を記述する。
+
+## microCMSから型を抽出する方法
+
+`API設定 > APIスキーマ > 「この設定をエクスポートする」`で出力されるjsonファイルを`src/schema`配下に格納し、`generate:cms types`コマンドを実行すると、`src/types`配下に型が出力される。
+
+ファイル名からエンドポイント名を取り出すので、スキーマのファイル名は変更しない。
+
+フォルダ上に同じエンドポイント名のファイルがある場合は、ファイル末尾の日付から最新のものが選択される。
+
+## AWS Amplify
+
+AWS Amplify × Route53でホスティング。
+`production_netlify`ブランチにプッシュすることでビルド可能。
+
+MicroCMSのAPI情報は環境変数で保持する。
+
+※以前はnetlifyでVue CLIのSSG環境を立てていたが、App RouterでSSRビルドすると404になるバグが発生したため、Amplifyに移行した。

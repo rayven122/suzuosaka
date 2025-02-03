@@ -1,0 +1,1 @@
+{"apiFields":[{"idValue":"BztF4s50fX","fieldId":"title","name":"タイトル","kind":"text","isUnique":false},{"fieldId":"content","name":"内容","kind":"richEditorV2"},{"fieldId":"eyecatch","name":"アイキャッチ","kind":"media"},{"fieldId":"category","name":"カテゴリ","kind":"relation"}],"customFields":[]}
