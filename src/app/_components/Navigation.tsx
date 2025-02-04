@@ -19,7 +19,7 @@ export const Navigation = () => {
   ];
 
   return (
-    <>
+    <div className="relative overflow-hidden">
       <nav className="fixed -right-5 -top-5 z-50">
         <motion.button
           onClick={() => setIsOpen(true)}
@@ -183,6 +183,6 @@ export const Navigation = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 };

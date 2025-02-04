@@ -1,3 +1,4 @@
+// NewsClient.tsx
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -5,9 +6,9 @@ import Link from "next/link";
 
 type NewsItem = {
   id: string;
-  title: string;
-  date: string;
-  description: string;
+  title?: string;
+  date?: string;
+  description?: string;
   thumbnail?: string;
 };
 
@@ -36,29 +37,7 @@ const NewsCard = ({ news }: { news: NewsItem }) => {
   );
 };
 
-export default function News() {
-  // 仮のニュースデータ
-  const newsItems: NewsItem[] = [
-    {
-      id: "1",
-      title: "2024年営業時間のお知らせ",
-      date: "2024/02/03",
-      description: "2024年4月1日より営業時間が変更となります。",
-    },
-    {
-      id: "2",
-      title: "春の釣り体験キャンペーン開催",
-      date: "2024/02/02",
-      description: "春の釣り体験キャンペーンを開催いたします。",
-    },
-    {
-      id: "3",
-      title: "年末年始の営業について",
-      date: "2024/02/01",
-      description: "年末年始の営業時間についてお知らせいたします。",
-    },
-  ];
-
+export const NewsClient = ({ newsItems }: { newsItems: NewsItem[] }) => {
   return (
     <section className="bg-gradient-main relative h-[500px] w-full px-4 py-10 md:h-[800px] md:py-20">
       <div className="container mx-auto">
@@ -105,4 +84,4 @@ export default function News() {
       />
     </section>
   );
-}
+};

@@ -62,7 +62,7 @@ export const BrandStory = () => {
         <div className="absolute right-[30%] top-[20%] md:right-[50%] md:top-[20%]">
           <RiverSub />
         </div>
-        <div className="absolute left-[5%] top-[65%] md:right-[55%] md:top-[50%]">
+        <div className="absolute right-[20%] top-[65%] md:right-[50%] md:top-[50%]">
           {/* 説明 */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}

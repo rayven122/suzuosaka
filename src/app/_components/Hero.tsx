@@ -61,7 +61,7 @@ export const Hero = () => {
           <CircularImage
             src="/Hero/fishing.png"
             alt="釣りの様子"
-            className="h-[200px] w-[300px] rounded-[50%] md:h-[250px] md:w-[400px] lg:h-[300px] lg:w-[500px]"
+            className="h-[200px] w-[300px] rounded-[50%] md:h-[250px] md:w-[400px] lg:h-[300px] lg:w-[500px] xl:h-[500px] xl:w-[700px]"
           />
           <Image
             src="/Hero/bubble.svg"
@@ -75,7 +75,7 @@ export const Hero = () => {
       <CircularImage
         src="/Hero/fish.png"
         alt="塩焼き"
-        className="absolute right-[25%] top-[60%] size-[130px] rounded-full md:right-[15%] md:size-[200px] lg:right-[20%] lg:size-[250px]"
+        className="absolute right-[25%] top-[60%] size-[130px] rounded-full md:right-[15%] md:size-[200px] lg:right-[20%] lg:size-[250px] xl:size-[350px]"
       />
       <Image
         src="/Hero/text1.svg"
@@ -87,7 +87,7 @@ export const Hero = () => {
       <CircularImage
         src="/Hero/river.png"
         alt="川底の様子"
-        className="absolute right-[80%] top-[30%] h-[130px] w-[100px] rounded-[50%] md:right-[55%] md:h-[180px] md:w-[150px] lg:right-[60%] lg:h-[230px] lg:w-[180px]"
+        className="absolute right-[80%] top-[30%] h-[130px] w-[100px] rounded-[50%] md:right-[55%] md:h-[180px] md:w-[150px] lg:right-[60%] lg:h-[230px] lg:w-[180px] xl:right-[65%] xl:h-[280px] xl:w-[230px]"
       />
 
       {/* 下部 */}
