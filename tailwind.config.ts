@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-noto-sans)"],
+        "shippori-antique-b1": ["var(--font-shippori-antique-b1)"],
+      },
       colors: {
         gray: {
           300: "#98a6b5",
@@ -16,7 +20,7 @@ const config: Config = {
           800: "#41494e",
           900: "#3c3c3c",
         },
-        primary: { DEFAULT: "#7FE5F0", light: "#00E2FF", dark: "#00E2FF" },
+        primary: { DEFAULT: "#00E2FF", light: "#00E2FF", dark: "#00E2FF" },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -24,6 +28,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "bubble-gradient":
           "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.30) 50%, rgba(255, 255, 255, 0.20) 100%)",
+        "gradient-main": "linear-gradient(to bottom right, #06F9C2, #01E7EF)",
+        "gradient-hero": "linear-gradient(to bottom, #01E7EF,#06F9C2 )",
       },
       keyframes: {
         float: {

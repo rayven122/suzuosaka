@@ -1,90 +1,122 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
+import { useRef } from "react";
 
 export const BrandStory = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // パララックス効果のための変換
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+
   return (
-    <section className="bg-gradient-main relative h-[1000px] w-full py-20 lg:h-[1100px]">
+    <section
+      ref={containerRef}
+      className="bg-gradient-main relative h-auto w-full overflow-hidden py-10 md:h-[1000px] lg:h-[1100px] lg:py-20"
+    >
       <div className="container mx-auto px-4">
         {/* タイトル */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-8 md:mb-12"
         >
-          <p className="text-sm font-semibold md:text-xl">ABOUT</p>
-          <h2 className="font-shippori-antique-b1 mb-2 text-xl font-medium md:text-4xl">
+          <p className="text-base font-semibold md:text-2xl">ABOUT</p>
+          <h2 className="font-shippori-antique-b1 mb-2 text-2xl font-medium md:text-5xl">
             おさかとは?
           </h2>
         </motion.div>
 
         {/* セリフ */}
-        <ul className="mb-6 ml-5 flex gap-2 md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
+        <ul className="mb-4 ml-2 flex gap-2 text-base md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
           {["面白すぎる「川」の世界へ", "ちゃぽん！"].map((text, index) => (
             <li key={index} className="block">
-              <span className="font-shippori-antique-b1 border-2 border-black bg-white [writing-mode:vertical-rl]">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="font-shippori-antique-b1 border-2 border-black bg-white [writing-mode:vertical-rl]"
+              >
                 {text}
-              </span>
+              </motion.span>
             </li>
           ))}
         </ul>
 
         {/* メインビジュアル */}
-        <div className="absolute right-[15%] top-[35%]">
+        <div className="absolute right-[5%] top-[30%] md:right-[15%] md:top-[35%]">
           <ScrollingMain />
         </div>
-        <div className="absolute -right-[2%] top-[10%]">
+        <div className="absolute -right-[5%] top-[15%] md:-right-[2%] md:top-[10%]">
           <ForestSub />
         </div>
-        <div className="absolute right-[50%] top-[20%]">
+        <div className="absolute right-[40%] top-[25%] md:right-[50%] md:top-[20%]">
           <RiverSub />
         </div>
-        <div className="absolute right-[55%] top-[50%]">
+        <div className="absolute right-[2%] top-[60%] md:right-[55%] md:top-[50%]">
           {/* 説明 */}
-          <div className="w-80 space-y-8">
-            <p>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-64 space-y-4 md:w-80 md:space-y-8"
+          >
+            <p className="font-shippori-antique-b1 text-sm leading-relaxed md:text-lg">
               霊峰御嶽山の恵みを受ける200以上の滝と清流の町「飛騨小坂」。
               <br />
               透明度の高い川には太古の昔からあまご、いわなが豊富に泳ぎ回り、現在でもこの地に数多く棲息しています。
             </p>
             <Link href="/" className="group flex items-center gap-2">
-              <p className="text-lg font-bold">VIEW MORE</p>
-              <div className="group-hover:bg-gradient-main grid place-items-center rounded-full border border-black bg-white p-4 duration-500">
-                {/* TODO:矢印がホバー時に消えて、再度表示するようにする */}
+              <p className="text-lg font-bold md:text-xl">VIEW MORE</p>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="group-hover:bg-gradient-main relative grid place-items-center rounded-full border border-black bg-white p-3 md:p-4"
+              >
                 <Image
                   src="/common/arrow.svg"
                   alt="arrow"
-                  width={20}
-                  height={20}
+                  width={16}
+                  height={16}
+                  className="md:size-5"
                 />
-              </div>
+              </motion.div>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
-      {/* 装飾的な泡の要素 （TODO:パララックスで動くようにする）*/}
-      <Image
-        src="/BrandStory/bubble-single.svg"
-        alt="左の泡"
-        width={100}
-        height={100}
-        className="absolute -left-4 bottom-10 z-30"
-      />
-      <Image
-        src="/BrandStory/bubble-single.svg"
-        alt="左の泡"
-        width={100}
-        height={100}
-        className="absolute bottom-0 left-12 z-30"
-      />
+
+      {/* パララックスで動く泡 */}
+      <motion.div style={{ y: y1 }}>
+        <Image
+          src="/BrandStory/bubble-single.svg"
+          alt="左の泡"
+          width={80}
+          height={80}
+          className="absolute -left-4 bottom-10 z-30 md:size-[100px]"
+        />
+      </motion.div>
+      <motion.div style={{ y: y2 }}>
+        <Image
+          src="/BrandStory/bubble-single.svg"
+          alt="左の泡"
+          width={80}
+          height={80}
+          className="absolute bottom-0 left-12 z-30 md:size-[100px]"
+        />
+      </motion.div>
+
       {/* ブランド名のスクロール */}
-      {/* <DiagonalMarquee /> */}
       <div className="absolute -left-10 bottom-20 w-full">
-        <p className="w-full rotate-6 whitespace-nowrap text-7xl font-semibold">
+        <p className="w-full rotate-6 overflow-hidden whitespace-nowrap text-4xl font-semibold md:text-7xl">
           RIVERS ARE INTERESTING. RIVERS ARE INTERESTING. RIVERS ARE
           INTERESTING.
         </p>
@@ -100,30 +132,34 @@ export const ScrollingMain = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-10 size-[450px]"
+      className="relative mb-10 size-[250px] md:size-[450px]"
     >
-      <div className="bg-gradient-main absolute top-0 z-20 w-full rounded-t-[20px] border-2 border-b-0 border-black py-1">
-        <Marquee
-          gradient={false}
-          speed={50}
-          pauseOnHover={true}
-          className="overflow-hidden"
-        >
-          <div className="flex gap-1 px-1">
-            {[...Array(10)].map((_, i) =>
-              brandNames.map((item, index) => (
-                <span
-                  key={`${i}-${index}`}
-                  className="text-xl font-semibold md:text-xl"
-                >
-                  {item}
-                </span>
-              )),
-            )}
-          </div>
-        </Marquee>
-      </div>
-      <div className="relative z-10 aspect-square size-[450px] overflow-hidden">
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 aspect-square size-[250px] overflow-hidden md:size-[450px]"
+      >
+        <div className="bg-gradient-main absolute top-0 z-20 w-full rounded-t-[20px] border-2 border-b-0 border-black py-1">
+          <Marquee
+            gradient={false}
+            speed={50}
+            pauseOnHover={true}
+            className="overflow-hidden"
+          >
+            <div className="flex gap-1 px-1">
+              {[...Array(10)].map((_, i) =>
+                brandNames.map((item, index) => (
+                  <span
+                    key={`${i}-${index}`}
+                    className="text-base font-semibold md:text-xl"
+                  >
+                    {item}
+                  </span>
+                )),
+              )}
+            </div>
+          </Marquee>
+        </div>
         <Image
           src="/BrandStory/garden.png"
           alt="庭から見る川"
@@ -131,53 +167,72 @@ export const ScrollingMain = () => {
           width={450}
           className="rounded-[20px] border-2 border-black object-cover"
         />
-      </div>
+      </motion.div>
+
       {/* 装飾的な要素 */}
-      <div className="absolute left-3 top-1 size-[450px] rounded-[20px] border-2 border-black bg-[#00E2FF]" />
-      <Image
-        src="/BrandStory/logo.svg"
-        alt="logo"
-        width={100}
-        height={100}
-        className="bg-gradient-main absolute -bottom-12 -right-12 z-30 rounded-full"
-      />
+      <div className="absolute left-3 top-1 z-0 size-[250px] rounded-[20px] border-2 border-black bg-primary md:size-[450px]" />
+      <motion.div
+        whileHover={{ rotate: 360 }}
+        transition={{ duration: 1 }}
+        className="bg-gradient-main absolute -bottom-8 -right-8 z-30 rounded-full md:-bottom-12 md:-right-12"
+      >
+        <Image
+          src="/BrandStory/logo.svg"
+          alt="logo"
+          width={60}
+          height={60}
+          className="md:size-[100px]"
+        />
+      </motion.div>
     </motion.div>
   );
 };
 
 export const ForestSub = () => {
   const bubbles = [
-    { left: "-50px" },
-    { left: "0px" },
-    { left: "50px" },
-    { left: "100px" },
-    { left: "150px" },
+    { className: "-left-8 md:-left-[50px]" },
+    { className: "left-0" },
+    { className: "left-8 md:left-[50px]" },
+    { className: "left-16 md:left-[100px]" },
+    { className: "left-24 md:left-[150px]" },
   ];
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-10 size-[250px]"
+      className="relative mb-10 size-[150px] md:size-[250px]"
     >
-      {/* 後ろの泡（TODO:パララックスで動くようにする） */}
+      {/* パララックスで動く泡 */}
       {bubbles.map((bubble, index) => (
-        <Image
+        <motion.div
           key={index}
-          src="/common/bubble-single.svg"
-          alt="装飾"
-          width={120}
-          height={120}
-          style={{
-            position: "absolute",
-            top: "-50px",
-            left: bubble.left,
+          initial={{ y: 0 }}
+          animate={{ y: [-10, 10, -10] }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            delay: index * 0.2,
           }}
-        />
+          className={`absolute -top-8 md:-top-[50px] ${bubble.className}`}
+        >
+          <Image
+            src="/common/bubble-single.svg"
+            alt="装飾"
+            width={60}
+            height={60}
+            className="md:size-[120px]"
+          />
+        </motion.div>
       ))}
 
       {/* 画像 */}
-      <div className="relative z-10 aspect-square size-[250px] overflow-hidden">
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.3 }}
+        className="relative z-10 aspect-square size-[150px] overflow-hidden md:size-[250px]"
+      >
         <Image
           src="/BrandStory/forest.png"
           alt="林"
@@ -185,9 +240,9 @@ export const ForestSub = () => {
           width={250}
           className="aspect-square rounded-[20px] border-2 border-black object-cover"
         />
-      </div>
+      </motion.div>
       {/* 後ろのボックス */}
-      <div className="absolute left-2 top-2 size-[250px] rounded-[20px] border-2 border-black bg-[#00E2FF]" />
+      <div className="absolute left-2 top-2 size-[150px] rounded-[20px] border-2 border-black bg-[#00E2FF] md:size-[250px]" />
     </motion.div>
   );
 };
@@ -198,51 +253,75 @@ export const RiverSub = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-10 size-[250px]"
+      className="relative mb-10 size-[150px] md:size-[250px]"
     >
-      {/* 後ろの泡（TODO:パララックスで動くようにする） */}
+      {/* パララックスで動く泡 */}
       {/* 左の泡 */}
-      <Image
-        src="/BrandStory/bubble-s-lt.svg"
-        alt="左の泡"
-        width={30}
-        height={30}
-        className="absolute -left-12 top-10 z-30"
-      />
-      <Image
-        src="/BrandStory/bubble-b-lt.svg"
-        alt="左の泡"
-        width={50}
-        height={50}
-        className="absolute -left-20 top-2 z-50"
-      />
-      {/* 後ろの泡（TODO:パララックスで動くようにする） */}
+      <motion.div
+        animate={{ y: [-10, 10, -10] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      >
+        <Image
+          src="/BrandStory/bubble-s-lt.svg"
+          alt="左の泡"
+          width={20}
+          height={20}
+          className="absolute -left-8 top-6 z-30 md:-left-12 md:top-10 md:size-[30px]"
+        />
+      </motion.div>
+      <motion.div
+        animate={{ y: [-15, 15, -15] }}
+        transition={{ duration: 4, repeat: Infinity }}
+      >
+        <Image
+          src="/BrandStory/bubble-b-lt.svg"
+          alt="左の泡"
+          width={30}
+          height={30}
+          className="absolute -left-12 top-1 z-50 md:-left-20 md:top-2 md:size-[50px]"
+        />
+      </motion.div>
+
       {/* 右の泡 */}
-      <Image
-        src="/BrandStory/bubble-s-rt.svg"
-        alt="右の泡"
-        width={35}
-        height={35}
-        className="absolute -right-4 top-16 z-30"
-      />
-      <Image
-        src="/BrandStory/bubble-b-rt.svg"
-        alt="左の泡"
-        width={50}
-        height={50}
-        className="absolute -right-12 top-10 z-50"
-      />
+      <motion.div
+        animate={{ y: [-12, 12, -12] }}
+        transition={{ duration: 3.5, repeat: Infinity }}
+      >
+        <Image
+          src="/BrandStory/bubble-s-rt.svg"
+          alt="右の泡"
+          width={20}
+          height={20}
+          className="absolute -right-2 top-10 z-20 md:-right-4 md:top-16 md:size-[35px]"
+        />
+      </motion.div>
+      <motion.div
+        animate={{ y: [-18, 18, -18] }}
+        transition={{ duration: 4.5, repeat: Infinity }}
+      >
+        <Image
+          src="/BrandStory/bubble-b-rt.svg"
+          alt="左の泡"
+          width={30}
+          height={30}
+          className="absolute -right-8 top-6 z-30 md:-right-12 md:top-10 md:size-[50px]"
+        />
+      </motion.div>
 
       {/* テキスト */}
       <Image
         src="/BrandStory/text.svg"
         alt="川"
-        width={200}
-        height={150}
-        className="absolute left-0 top-0 z-30"
+        width={120}
+        height={90}
+        className="absolute -top-10 left-0 z-30 md:size-[200px]"
       />
       {/* 画像 */}
-      <div className="relative z-10 aspect-square size-[250px] overflow-hidden">
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.3 }}
+        className="relative z-10 aspect-square size-[150px] overflow-hidden md:size-[250px]"
+      >
         <Image
           src="/BrandStory/river.png"
           alt="川"
@@ -250,40 +329,9 @@ export const RiverSub = () => {
           width={250}
           className="aspect-square rounded-[20px] border-2 border-black object-cover"
         />
-      </div>
+      </motion.div>
       {/* 後ろのボックス */}
-      <div className="absolute left-2 top-2 size-[250px] rounded-[20px] border-2 border-black bg-[#00E2FF]" />
+      <div className="absolute left-2 top-2 size-[150px] rounded-[20px] border-2 border-black bg-primary md:size-[250px]" />
     </motion.div>
   );
 };
-// export const DiagonalMarquee = () => {
-//   const brandSubNames = ["RIVERS ARE INTERESTING."];
-
-//   return (
-//     <div className="relative z-50 h-[600px] w-full overflow-hidden">
-//       {/* Marquee コンポーネントを画面下部に配置 */}
-//       <div className="absolute bottom-0 left-0 w-full">
-//         <Marquee
-//           gradient={false}
-//           speed={50}
-//           pauseOnHover={true}
-//           // className="overflow-hidden"
-//         >
-//           {/* テキスト全体に 10° 回転を適用 */}
-//           <div className="flex rotate-[10deg] transform gap-1 px-1">
-//             {[...Array(30)].map((_, i) =>
-//               brandSubNames.map((item, index) => (
-//                 <span
-//                   key={`${i}-${index}`}
-//                   className="text-4xl font-semibold md:text-6xl"
-//                 >
-//                   {item}
-//                 </span>
-//               )),
-//             )}
-//           </div>
-//         </Marquee>
-//       </div>
-//     </div>
-//   );
-// };

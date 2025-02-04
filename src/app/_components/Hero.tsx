@@ -25,7 +25,7 @@ const CircularImage = ({
 
 export const Hero = () => {
   return (
-    <section className="bg-gradient-hero relative h-[600px] w-full overflow-hidden md:h-[800px] lg:min-h-[1000px]">
+    <section className="bg-gradient-hero relative h-[600px] w-full overflow-hidden md:h-[800px] lg:min-h-[1100px]">
       <div className="absolute left-4 top-2 z-10 mx-auto max-w-7xl flex-col md:left-10 md:top-10">
         <Image
           src="/common/logo-vertical.svg"

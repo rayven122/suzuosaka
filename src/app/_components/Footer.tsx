@@ -4,7 +4,7 @@ import { FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-gradient-to-b from-cyan-200 to-green-200 px-4 py-8">
+    <footer className="w-full bg-gradient-to-r from-primary to-[#07FFB3] px-4 py-8">
       <div className="container mx-auto">
         {/* ロゴ */}
         <div className="mb-8 text-center">

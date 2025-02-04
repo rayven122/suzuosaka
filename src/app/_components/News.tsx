@@ -60,7 +60,7 @@ export default function News() {
   ];
 
   return (
-    <section className="relative h-[500px] w-full bg-primary px-4 py-10 md:h-[800px] md:py-20">
+    <section className="bg-gradient-main relative h-[500px] w-full px-4 py-10 md:h-[800px] md:py-20">
       <div className="container mx-auto">
         {/* タイトル */}
         <motion.div
