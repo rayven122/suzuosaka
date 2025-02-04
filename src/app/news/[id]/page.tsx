@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { notFound } from "next/navigation";
 import parse from "html-react-parser";
 import Spinner from "@/app/_components/Spinner";
@@ -16,9 +16,9 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${data.title} | ブログ`,
     description: `${data.title}の記事ページ`,
-    openGraph: {
-      images: data.eyecatch.url,
-    },
+    // openGraph: {
+    //   images: data.eyecatch.url,
+    // },
   };
 }
 
@@ -37,13 +37,13 @@ export default async function BlogDetail({ params }: Props) {
                 カテゴリ: {data.category.name}
               </div>
             )}
-            <Image
+            {/* <Image
               src={data.eyecatch.url}
               width={data.eyecatch.width}
               height={data.eyecatch.height}
               alt={`${data.title}のアイキャッチ画像`}
               className="mb-8 rounded-lg"
-            />
+            /> */}
             <div className="mt-8">{parse(data.content)}</div>
           </article>
         </div>

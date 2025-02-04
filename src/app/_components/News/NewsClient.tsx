@@ -14,14 +14,14 @@ type NewsItem = {
 
 const NewsCard = ({ news }: { news: NewsItem }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.02 }}
-      className="group w-full cursor-pointer overflow-hidden border-b-2 border-black p-4 transition-all md:p-8"
-    >
-      <Link href={`/news/${news.id}`}>
+    <Link href={`/news/${news.id}`}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        whileHover={{ scale: 1.02 }}
+        className="group w-full cursor-pointer overflow-hidden border-b-2 border-black p-4 transition-all md:p-8"
+      >
         <div className="items-center gap-4 text-sm md:flex md:text-xl">
           <div className="flex items-center gap-2">
             <div className="font-bold text-gray-500">{news.date}</div>
@@ -32,8 +32,8 @@ const NewsCard = ({ news }: { news: NewsItem }) => {
             <Image src="/common/arrow.svg" alt="arrow" width={30} height={24} />
           </div>
         </div>
-      </Link>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 };
 
@@ -64,7 +64,7 @@ export const NewsClient = ({ newsItems }: { newsItems: NewsItem[] }) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="absolute bottom-[20%] left-[50%] z-10 -translate-x-1/2 text-center"
+          className="absolute bottom-[10%] left-[50%] z-10 -translate-x-1/2 text-center"
         >
           <Link
             href="/news"
