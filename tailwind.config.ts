@@ -16,7 +16,7 @@ const config: Config = {
           800: "#41494e",
           900: "#3c3c3c",
         },
-        primary: { DEFAULT: "#00E2FF", light: "#00E2FF", dark: "#00E2FF" },
+        primary: { DEFAULT: "#7FE5F0", light: "#00E2FF", dark: "#00E2FF" },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

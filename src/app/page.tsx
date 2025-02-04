@@ -1,13 +1,18 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./_components/Button";
+import Button from "./_components/common/Button";
 import Spinner from "./_components/Spinner";
 import { client } from "@/libs/client";
 import { Blog } from "@/types/blog-types";
-import Hero from "./_components/Hero";
-import { Navigation } from "./_components/Navigation";
-import { InstaRing } from "./_components/InstaRing";
+
+import { InstaRing } from "./_components/common/InstaRing";
+import News from "./_components/News";
+import Fishing from "./_components/Fishing";
+import Eatery from "./_components/Eatery";
+import Access from "./_components/Access";
+import CTA from "./_components/CTA";
+import { Hero } from "./_components/Hero";
 
 export default async function Home() {
   try {
@@ -20,6 +25,12 @@ export default async function Home() {
       <main>
         <InstaRing />
         <Hero />
+        {/* ブランドストーリ */}
+        <News />
+        <Fishing />
+        <Eatery />
+        <Access />
+        <CTA />
         <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-10 px-5 md:mt-20 md:grid-cols-2 md:gap-y-20 md:px-10 xl:grid-cols-3 xl:gap-x-16 xl:px-20">
           <Suspense fallback={<Spinner />}>
             {data.contents.map((blog: Blog) => {

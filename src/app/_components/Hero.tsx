@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
-import { Bubbles } from "./Bubble";
+import { Bubbles } from "./common/Bubble";
 
 const CircularImage = ({
   src,
@@ -23,9 +23,9 @@ const CircularImage = ({
   </div>
 );
 
-export default function Hero() {
+export const Hero = () => {
   return (
-    <div className="relative mb-40 h-[600px] w-full overflow-hidden bg-[#7FE5F0] md:h-[700px] lg:min-h-[800px]">
+    <section className="relative h-[600px] w-full overflow-hidden bg-primary md:h-[800px] lg:min-h-[1000px]">
       <div className="absolute left-4 top-2 z-10 mx-auto max-w-7xl flex-col md:left-10 md:top-10">
         <Image
           src="/common/logo-vertical.svg"
@@ -120,9 +120,9 @@ export default function Hero() {
         </div>
         <ScrollingMenu />
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export const ScrollingMenu = () => {
   const menuItems = [

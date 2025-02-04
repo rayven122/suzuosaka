@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "./common/Button";
 import { details } from "@/types/cms-types";
 
 type Props = {
