@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { INSTAGRAM_URL } from "@/constants/sns";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +80,7 @@ export const Navigation = () => {
                   className="transition-transform"
                 >
                   <Link
-                    href="https://www.instagram.com/river_house_osaka"
+                    href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-col items-center gap-2 md:hidden"
@@ -122,7 +123,7 @@ export const Navigation = () => {
                 <div className="mt-20 hidden md:flex">
                   <motion.div whileHover={{ scale: 1.1 }}>
                     <Link
-                      href="https://www.instagram.com/river_house_osaka"
+                      href={INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 transition-colors hover:text-[#00E2FF]"

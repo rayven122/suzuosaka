@@ -4,11 +4,12 @@ import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { INSTAGRAM_URL } from "@/constants/sns";
 
 export const InstaRing = () => {
   return (
     <Link
-      href="https://www.instagram.com/river_house_osaka"
+      href={INSTAGRAM_URL}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-[20px] right-[20px] z-50 md:bottom-[50px] md:right-[50px]"

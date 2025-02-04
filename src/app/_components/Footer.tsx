@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
+import { INSTAGRAM_URL } from "@/constants/sns";
 
 export default function Footer() {
   return (
@@ -57,11 +58,7 @@ export default function Footer() {
 
         {/* SNSアイコン */}
         <div className="mb-8 flex justify-center gap-4">
-          <Link
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
             <FaInstagram className="text-2xl" />
           </Link>
         </div>
