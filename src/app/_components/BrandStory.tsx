@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { useRef } from "react";
+import { Description } from "./common/Discription";
 
 export const BrandStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,12 +18,15 @@ export const BrandStory = () => {
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -300]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
+  const text =
+    "霊峰御嶽山の恵みを受ける200以上の滝と清流の町「飛騨小坂」。透明度の高い川には太古の昔からあまご、いわなが豊富に泳ぎ回り、現在でもこの地に数多く棲息しています。";
+
   return (
     <section
       ref={containerRef}
-      className="bg-gradient-main relative h-[1000px] w-full overflow-hidden py-10 lg:h-[1100px] lg:py-20"
+      className="relative h-[1000px] w-full overflow-hidden bg-gradient-main py-10 lg:h-[1100px] lg:py-20"
     >
-      <div className="container mx-auto px-4">
+      <div className="container z-30 mx-auto px-4">
         {/* タイトル */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,67 +35,43 @@ export const BrandStory = () => {
           className="mb-8 md:mb-12"
         >
           <p className="text-base font-semibold md:text-2xl">ABOUT</p>
-          <h2 className="font-shippori-antique-b1 mb-2 text-2xl font-medium md:text-5xl">
+          <h2 className="mb-2 font-shippori-antique-b1 text-2xl font-medium md:text-5xl">
             おさかとは?
           </h2>
         </motion.div>
 
         {/* セリフ */}
-        <ul className="mb-4 ml-2 flex gap-2 text-base md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
+        <ul className="z-10 flex gap-2 text-base md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
           {["面白すぎる「川」の世界へ", "ちゃぽん！"].map((text, index) => (
             <li key={index} className="block">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="font-shippori-antique-b1 border-2 border-black bg-white [writing-mode:vertical-rl]"
+                className="border-2 border-black bg-white font-shippori-antique-b1 [writing-mode:vertical-rl]"
               >
                 {text}
               </motion.span>
             </li>
           ))}
         </ul>
-
-        {/* メインビジュアル */}
-        <div className="absolute right-[10%] top-[35%]">
-          <ScrollingMain />
-        </div>
-        <div className="absolute -right-[5%] top-[8%] md:-right-[2%] md:top-[10%]">
-          <ForestSub />
-        </div>
-        <div className="absolute right-[30%] top-[20%] md:right-[50%] md:top-[20%]">
-          <RiverSub />
-        </div>
-        <div className="absolute right-[20%] top-[65%] md:right-[50%] md:top-[50%]">
-          {/* 説明 */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="w-64 space-y-4 md:w-80 md:space-y-8"
-          >
-            <p className="font-shippori-antique-b1 text-sm leading-relaxed md:text-lg">
-              霊峰御嶽山の恵みを受ける200以上の滝と清流の町「飛騨小坂」。
-              <br />
-              透明度の高い川には太古の昔からあまご、いわなが豊富に泳ぎ回り、現在でもこの地に数多く棲息しています。
-            </p>
-            <Link href="/" className="group flex items-center gap-2">
-              <p className="text-lg font-bold md:text-xl">VIEW MORE</p>
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                className="group-hover:bg-gradient-main relative grid place-items-center rounded-full border border-black bg-white p-3 md:p-4"
-              >
-                <Image
-                  src="/common/arrow.svg"
-                  alt="arrow"
-                  width={16}
-                  height={16}
-                  className="md:size-5"
-                />
-              </motion.div>
-            </Link>
-          </motion.div>
-        </div>
+      </div>
+      {/* メインビジュアル */}
+      <div className="absolute right-[10%] top-[35%] z-30 md:right-[5%] xl:right-[18%]">
+        <ScrollingMain />
+      </div>
+      <div className="absolute -right-[5%] top-[8%] md:-right-[2%] md:top-[10%]">
+        <ForestSub />
+      </div>
+      <div className="absolute right-[30%] top-[20%] md:right-[50%] md:top-[20%]">
+        <RiverSub />
+      </div>
+      <div className="absolute right-[20%] top-[65%] md:right-[50%] md:top-[50%] xl:right-[60%]">
+        {/* 説明 */}
+        <Description
+          text="霊峰御嶽山の恵みを受ける200以上の滝と清流の町「飛騨小坂」。透明度の高い川には太古の昔からあまご、いわなが豊富に泳ぎ回り、現在でもこの地に数多く棲息しています。"
+          linkHref="/"
+        />
       </div>
 
       {/* パララックスで動く泡 */}
@@ -128,14 +108,14 @@ export const ScrollingMain = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-10 size-[250px] md:size-[450px]"
+      className="relative mb-10 size-[250px] md:size-[450px] xl:size-[550px]"
     >
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 aspect-square size-[250px] overflow-hidden md:size-[450px]"
+        className="relative z-10 aspect-square size-[250px] overflow-hidden md:size-[450px] xl:size-[550px]"
       >
-        <div className="bg-gradient-main absolute top-0 z-20 w-full rounded-t-[20px] border-2 border-b-0 border-black py-1">
+        <div className="absolute top-0 z-20 w-full rounded-t-[20px] border-2 border-b-0 border-black bg-gradient-main py-1 md:py-2">
           <Marquee
             gradient={false}
             speed={50}
@@ -159,25 +139,25 @@ export const ScrollingMain = () => {
         <Image
           src="/BrandStory/garden.png"
           alt="庭から見る川"
-          height={450}
-          width={450}
-          className="rounded-[20px] border-2 border-black object-cover"
+          height={550}
+          width={550}
+          className="rounded-[20px] border-2 border-black object-cover md:size-[450px] xl:size-[550px]"
         />
       </motion.div>
 
       {/* 装飾的な要素 */}
-      <div className="absolute left-3 top-1 z-0 size-[250px] rounded-[20px] border-2 border-black bg-primary md:size-[450px]" />
+      <div className="absolute left-3 top-1 z-0 size-[250px] rounded-[20px] border-2 border-black bg-primary md:top-2 md:size-[450px] xl:size-[550px]" />
       <motion.div
         whileHover={{ rotate: 360 }}
         transition={{ duration: 1 }}
-        className="bg-gradient-main absolute -bottom-8 -right-8 z-30 rounded-full md:-bottom-12 md:-right-12"
+        className="absolute -bottom-8 -right-8 z-30 rounded-full bg-gradient-main md:-bottom-12 md:-right-12"
       >
         <Image
           src="/BrandStory/logo.svg"
           alt="logo"
           width={60}
           height={60}
-          className="md:size-[100px]"
+          className="md:size-[100px] xl:size-[120px]"
         />
       </motion.div>
     </motion.div>
@@ -198,7 +178,7 @@ export const ForestSub = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-10 size-[125px] md:size-[250px]"
+      className="relative mb-10 size-[125px] md:size-[250px] xl:size-[350px]"
     >
       {/* パララックスで動く泡 */}
       {bubbles.map((bubble, index) => (
@@ -218,7 +198,7 @@ export const ForestSub = () => {
             alt="装飾"
             width={60}
             height={60}
-            className="md:size-[120px]"
+            className="md:size-[120px] xl:size-[150px]"
           />
         </motion.div>
       ))}
@@ -227,18 +207,18 @@ export const ForestSub = () => {
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
-        className="relative z-10 aspect-square size-[125px] overflow-hidden md:size-[250px]"
+        className="relative z-10 aspect-square size-[125px] overflow-hidden md:size-[250px] xl:size-[350px]"
       >
         <Image
           src="/BrandStory/forest.png"
           alt="林"
-          height={250}
-          width={250}
-          className="aspect-square rounded-[20px] border-2 border-black object-cover"
+          height={350}
+          width={350}
+          className="aspect-square rounded-[20px] border-2 border-black object-cover md:size-[250px] xl:size-[350px]"
         />
       </motion.div>
       {/* 後ろのボックス */}
-      <div className="absolute left-2 top-2 size-[125px] rounded-[20px] border-2 border-black bg-primary md:size-[250px]" />
+      <div className="absolute left-2 top-2 size-[125px] rounded-[20px] border-2 border-black bg-primary md:size-[250px] xl:size-[350px]" />
     </motion.div>
   );
 };

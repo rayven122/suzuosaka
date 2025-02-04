@@ -39,7 +39,7 @@ const NewsCard = ({ news }: { news: NewsItem }) => {
 
 export const NewsClient = ({ newsItems }: { newsItems: NewsItem[] }) => {
   return (
-    <section className="bg-gradient-main relative h-[500px] w-full px-4 py-10 md:h-[800px] md:py-20">
+    <section className="relative h-[500px] w-full bg-gradient-main px-4 py-10 md:h-[800px] md:py-20">
       <div className="container mx-auto">
         {/* タイトル */}
         <motion.div
@@ -48,13 +48,13 @@ export const NewsClient = ({ newsItems }: { newsItems: NewsItem[] }) => {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-sm font-semibold md:text-xl">NEWS</p>
-          <h2 className="font-shippori-antique-b1 mb-2 text-xl font-medium md:text-4xl">
+          <p className="text-base font-semibold md:text-2xl">NEWS</p>
+          <h2 className="mb-2 font-shippori-antique-b1 text-2xl font-medium md:text-5xl">
             お知らせ
           </h2>
         </motion.div>
         {/* News概要 */}
-        <div className="absolute right-0 z-20 flex w-[95%] flex-col rounded-l-full border-2 border-r-0 border-black bg-white pb-8 pl-16 pr-4 pt-4 sm:w-[90%] md:w-[85%] lg:w-[80%] lg:pb-16 lg:pl-32 lg:pr-20 lg:pt-8">
+        <div className="absolute right-0 z-20 flex w-[95%] flex-col rounded-l-full border-2 border-r-0 border-black bg-white pb-8 pl-20 pr-4 pt-4 sm:w-[90%] md:w-[85%] lg:w-[80%] lg:pb-16 lg:pl-32 lg:pr-20 lg:pt-8">
           {newsItems.map((news) => (
             <NewsCard key={news.id} news={news} />
           ))}

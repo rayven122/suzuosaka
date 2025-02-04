@@ -16,6 +16,7 @@ const shipporiAntiqueB1 = Shippori_Antique_B1({
 export const metadata: Metadata = {
   title: "川の家おさか公式サイト",
   description: "川の家おさかは岐阜県下呂市にある、川の家おさかです。",
+  metadataBase: new URL("https://suzu-osaka.com"),
   icons: {
     icon: "/favicon.ico",
   },

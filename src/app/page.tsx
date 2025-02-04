@@ -4,6 +4,7 @@ import { Hero } from "./_components/Hero";
 import { BrandStory } from "./_components/BrandStory";
 import { NewsContainer } from "./_components/News/NewsContainer";
 import { Fishing } from "./_components/Fishing";
+import { Eatery } from "./_components/Eatery";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <BrandStory />
       <NewsContainer />
       <Fishing />
-      {/* <Eatery /> */}
+      <Eatery />
       {/* <Access /> */}
       <CTA />
     </main>
