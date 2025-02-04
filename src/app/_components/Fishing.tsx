@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
-import { Description } from "./common/Discription";
-import { BubblesMotion } from "./common/BubbleMotion";
+import { Description } from "./common/Description";
+import { BubblesUnderMotion } from "./common/BubbleUnderMotion";
+import { BubblesUpperMotion } from "./common/BubbleUpperMotion";
 
 export const Fishing = () => {
   return (
@@ -73,7 +74,8 @@ export const Fishing = () => {
         height={80}
         className="absolute bottom-4 left-4 z-30 size-[50px] md:bottom-0 md:left-12 md:size-[100px]"
       />
-      <BubblesMotion />
+      <BubblesUnderMotion />
+      <BubblesUpperMotion />
     </section>
   );
 };

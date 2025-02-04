@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import Marquee from "react-fast-marquee";
-import { Description } from "./common/Discription";
+import { Description } from "./common/Description";
+import { BubblesUnderMotion } from "./common/BubbleUnderMotion";
 
 export const Eatery = () => {
   return (
@@ -57,8 +57,7 @@ export const Eatery = () => {
           linkHref="/"
         />
       </div>
-
-      <Bubbles />
+      <BubblesUnderMotion />
     </section>
   );
 };
@@ -165,85 +164,5 @@ export const TempuraSub = () => {
       {/* 後ろのボックス */}
       <div className="absolute left-2 top-2 size-[125px] rounded-[20px] border-2 border-black bg-primary md:left-3 md:top-3 md:size-[250px] xl:size-[350px]" />
     </motion.div>
-  );
-};
-
-export const Bubbles = () => {
-  const upperBubbles = [
-    { top: "-10px", left: "-40px" },
-    { top: "-10px", left: "-10px" },
-    { top: "-10px", left: "20px" },
-    { top: "-10px", left: "50px" },
-  ];
-  const underBubbles = [
-    { bottom: "-70px", right: "670px" },
-    { bottom: "-70px", right: "610px" },
-    { bottom: "-70px", right: "550px" },
-    { bottom: "-70px", right: "490px" },
-    { bottom: "-70px", right: "430px" },
-    { bottom: "-70px", right: "370px" },
-    { bottom: "-70px", right: "310px" },
-    { bottom: "-70px", right: "250px" },
-    { bottom: "-20px", right: "190px" },
-    { bottom: "-20px", right: "130px" },
-    { bottom: "-20px", right: "70px" },
-    { bottom: "-20px", right: "10px" },
-    { bottom: "-20px", right: "-50px" },
-  ];
-
-  return (
-    <>
-      {/* TODO:左上に表示に変更 */}
-      {upperBubbles.map((bubble, index) => (
-        <motion.div
-          key={index}
-          initial={{ y: 0 }}
-          animate={{ y: [-10, 10, -10] }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: index * 0.2,
-          }}
-          style={{
-            position: "absolute",
-            top: bubble.top,
-            left: bubble.left,
-          }}
-        >
-          <Image
-            src="/Fishing/bubble-single2.svg"
-            alt="装飾"
-            width={60}
-            height={60}
-            className="z-20 md:h-[120px] md:w-[120px]"
-          />
-        </motion.div>
-      ))}
-      {underBubbles.map((bubble, index) => (
-        <motion.div
-          key={index}
-          initial={{ y: 0 }}
-          animate={{ y: [-10, 10, -10] }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: index * 0.2,
-          }}
-          style={{
-            position: "absolute",
-            bottom: bubble.bottom,
-            right: bubble.right,
-          }}
-        >
-          <Image
-            src="/Fishing/bubble-single.svg"
-            alt="装飾"
-            width={60}
-            height={60}
-            className="md:h-[120px] md:w-[120px]"
-          />
-        </motion.div>
-      ))}
-    </>
   );
 };

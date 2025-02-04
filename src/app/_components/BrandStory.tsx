@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { useRef } from "react";
-import { Description } from "./common/Discription";
+import { Description } from "./common/Description";
 
 export const BrandStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
