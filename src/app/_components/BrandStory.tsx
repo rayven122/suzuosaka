@@ -20,7 +20,7 @@ export const BrandStory = () => {
   return (
     <section
       ref={containerRef}
-      className="bg-gradient-main relative h-auto w-full overflow-hidden py-10 md:h-[1000px] lg:h-[1100px] lg:py-20"
+      className="bg-gradient-main relative h-[1000px] w-full overflow-hidden py-10 lg:h-[1100px] lg:py-20"
     >
       <div className="container mx-auto px-4">
         {/* タイトル */}
@@ -53,16 +53,16 @@ export const BrandStory = () => {
         </ul>
 
         {/* メインビジュアル */}
-        <div className="absolute right-[5%] top-[30%] md:right-[15%] md:top-[35%]">
+        <div className="absolute right-[10%] top-[35%]">
           <ScrollingMain />
         </div>
-        <div className="absolute -right-[5%] top-[15%] md:-right-[2%] md:top-[10%]">
+        <div className="absolute -right-[5%] top-[8%] md:-right-[2%] md:top-[10%]">
           <ForestSub />
         </div>
-        <div className="absolute right-[40%] top-[25%] md:right-[50%] md:top-[20%]">
+        <div className="absolute right-[30%] top-[20%] md:right-[50%] md:top-[20%]">
           <RiverSub />
         </div>
-        <div className="absolute right-[2%] top-[60%] md:right-[55%] md:top-[50%]">
+        <div className="absolute left-[5%] top-[65%] md:right-[55%] md:top-[50%]">
           {/* 説明 */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -95,24 +95,20 @@ export const BrandStory = () => {
       </div>
 
       {/* パララックスで動く泡 */}
-      <motion.div style={{ y: y1 }}>
-        <Image
-          src="/BrandStory/bubble-single.svg"
-          alt="左の泡"
-          width={80}
-          height={80}
-          className="absolute -left-4 bottom-10 z-30 md:size-[100px]"
-        />
-      </motion.div>
-      <motion.div style={{ y: y2 }}>
-        <Image
-          src="/BrandStory/bubble-single.svg"
-          alt="左の泡"
-          width={80}
-          height={80}
-          className="absolute bottom-0 left-12 z-30 md:size-[100px]"
-        />
-      </motion.div>
+      <Image
+        src="/BrandStory/bubble-single.svg"
+        alt="左の泡"
+        width={80}
+        height={80}
+        className="absolute -left-4 bottom-10 z-30 size-[50px] md:size-[100px]"
+      />
+      <Image
+        src="/BrandStory/bubble-single.svg"
+        alt="左の泡"
+        width={80}
+        height={80}
+        className="absolute bottom-4 left-4 z-30 size-[50px] md:bottom-0 md:left-12 md:size-[100px]"
+      />
 
       {/* ブランド名のスクロール */}
       <div className="absolute -left-10 bottom-20 w-full">
@@ -202,7 +198,7 @@ export const ForestSub = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-10 size-[150px] md:size-[250px]"
+      className="relative mb-10 size-[125px] md:size-[250px]"
     >
       {/* パララックスで動く泡 */}
       {bubbles.map((bubble, index) => (
@@ -231,7 +227,7 @@ export const ForestSub = () => {
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
-        className="relative z-10 aspect-square size-[150px] overflow-hidden md:size-[250px]"
+        className="relative z-10 aspect-square size-[125px] overflow-hidden md:size-[250px]"
       >
         <Image
           src="/BrandStory/forest.png"
@@ -242,7 +238,7 @@ export const ForestSub = () => {
         />
       </motion.div>
       {/* 後ろのボックス */}
-      <div className="absolute left-2 top-2 size-[150px] rounded-[20px] border-2 border-black bg-[#00E2FF] md:size-[250px]" />
+      <div className="absolute left-2 top-2 size-[125px] rounded-[20px] border-2 border-black bg-primary md:size-[250px]" />
     </motion.div>
   );
 };
@@ -253,7 +249,7 @@ export const RiverSub = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-10 size-[150px] md:size-[250px]"
+      className="relative mb-10 size-[125px] md:size-[250px]"
     >
       {/* パララックスで動く泡 */}
       {/* 左の泡 */}
@@ -283,45 +279,35 @@ export const RiverSub = () => {
       </motion.div>
 
       {/* 右の泡 */}
-      <motion.div
-        animate={{ y: [-12, 12, -12] }}
-        transition={{ duration: 3.5, repeat: Infinity }}
-      >
-        <Image
-          src="/BrandStory/bubble-s-rt.svg"
-          alt="右の泡"
-          width={20}
-          height={20}
-          className="absolute -right-2 top-10 z-20 md:-right-4 md:top-16 md:size-[35px]"
-        />
-      </motion.div>
-      <motion.div
-        animate={{ y: [-18, 18, -18] }}
-        transition={{ duration: 4.5, repeat: Infinity }}
-      >
-        <Image
-          src="/BrandStory/bubble-b-rt.svg"
-          alt="左の泡"
-          width={30}
-          height={30}
-          className="absolute -right-8 top-6 z-30 md:-right-12 md:top-10 md:size-[50px]"
-        />
-      </motion.div>
+      <Image
+        src="/BrandStory/bubble-s-rt.svg"
+        alt="右の泡"
+        width={20}
+        height={20}
+        className="absolute -right-6 top-10 z-20 md:-right-4 md:top-16 md:size-[35px]"
+      />
+      <Image
+        src="/BrandStory/bubble-b-rt.svg"
+        alt="左の泡"
+        width={30}
+        height={30}
+        className="absolute -right-8 top-6 z-30 md:-right-12 md:top-10 md:size-[50px]"
+      />
 
       {/* テキスト */}
-      <Image
-        src="/BrandStory/text.svg"
-        alt="川"
-        width={120}
-        height={90}
-        className="absolute -top-10 left-0 z-30 md:size-[200px]"
-      />
-      {/* 画像 */}
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
-        className="relative z-10 aspect-square size-[150px] overflow-hidden md:size-[250px]"
+        className="relative z-10 aspect-square size-[125px] md:size-[250px]"
       >
+        <Image
+          src="/BrandStory/text.svg"
+          alt="川"
+          width={120}
+          height={90}
+          className="absolute -top-10 left-0 z-30 size-[100px] md:size-[200px]"
+        />
+        {/* 画像 */}
         <Image
           src="/BrandStory/river.png"
           alt="川"
@@ -331,7 +317,7 @@ export const RiverSub = () => {
         />
       </motion.div>
       {/* 後ろのボックス */}
-      <div className="absolute left-2 top-2 size-[150px] rounded-[20px] border-2 border-black bg-primary md:size-[250px]" />
+      <div className="absolute left-2 top-2 size-[125px] rounded-[20px] border-2 border-black bg-primary md:size-[250px]" />
     </motion.div>
   );
 };
