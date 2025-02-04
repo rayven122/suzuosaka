@@ -28,7 +28,7 @@ const NewsCard = ({ news }: { news: NewsItem }) => {
           </div>
           <div className="flex items-center justify-between gap-1">
             <h3 className="group-hover:text-primary">{news.title}</h3>
-            <Image src="/News/arrow.svg" alt="arrow" width={30} height={24} />
+            <Image src="/common/arrow.svg" alt="arrow" width={30} height={24} />
           </div>
         </div>
       </Link>
@@ -69,8 +69,10 @@ export default function News() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-sm md:text-xl">NEWS</p>
-          <h2 className="mb-2 text-xl font-bold md:text-4xl">お知らせ</h2>
+          <p className="text-sm font-semibold md:text-xl">NEWS</p>
+          <h2 className="font-shippori-antique-b1 mb-2 text-xl font-medium md:text-4xl">
+            お知らせ
+          </h2>
         </motion.div>
         {/* News概要 */}
         <div className="absolute right-0 z-20 flex w-[95%] flex-col rounded-l-full border-2 border-r-0 border-black bg-white pb-8 pl-16 pr-4 pt-4 sm:w-[90%] md:w-[85%] lg:w-[80%] lg:pb-16 lg:pl-32 lg:pr-20 lg:pt-8">

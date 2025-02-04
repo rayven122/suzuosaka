@@ -13,6 +13,7 @@ import Eatery from "./_components/Eatery";
 import Access from "./_components/Access";
 import CTA from "./_components/CTA";
 import { Hero } from "./_components/Hero";
+import { BrandStory } from "./_components/BrandStory";
 
 export default async function Home() {
   try {
@@ -25,7 +26,7 @@ export default async function Home() {
       <main>
         <InstaRing />
         <Hero />
-        {/* ブランドストーリ */}
+        <BrandStory />
         <News />
         <Fishing />
         <Eatery />
