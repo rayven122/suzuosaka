@@ -18,8 +18,10 @@ export const Bubbles = () => {
       speed: number;
       opacity: number;
     }[] = [];
-    const maxBubbles = 550;
-    const spawnRate = 300;
+    // 泡の総数を減らす
+    const maxBubbles = 200;
+    // 生成頻度を落として泡の生成数を調整
+    const spawnRate = 500;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -31,7 +33,8 @@ export const Bubbles = () => {
         bubbles.push({
           x: Math.random() * canvas.width,
           y: canvas.height,
-          radius: Math.random() * 20 + 10,
+          // 泡のサイズを大きくする: 20～60px
+          radius: Math.random() * 40 + 20,
           speed: Math.random() * 2 + 1,
           opacity: Math.random() * 0.3 + 0.2, // 透明度を低めに設定
         });
