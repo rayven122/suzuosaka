@@ -54,7 +54,7 @@ export const Eatery = () => {
         {/* 説明 */}
         <Description
           text="あなたの知っている川魚の常識が変わるかもしれない！？ 美しい水で育った名物岩魚の天ぷらをはじめ塩焼、刺身などなど心も身体も満腹になります。"
-          linkHref="/eatery"
+          linkHref="/#eatery"
         />
       </div>
       <BubblesUnderMotion />

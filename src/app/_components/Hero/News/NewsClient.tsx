@@ -67,7 +67,7 @@ export const NewsClient = ({ newsItems }: { newsItems: NewsItem[] }) => {
           className="absolute bottom-[10%] left-[50%] z-10 -translate-x-1/2 text-center"
         >
           <Link
-            href="/news"
+            href="/#news"
             className="inline-block rounded-full bg-white px-8 py-3 font-bold text-primary shadow-md transition-all hover:bg-primary hover:text-white"
           >
             VIEW MORE
