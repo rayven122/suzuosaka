@@ -54,7 +54,7 @@ export const Fishing = () => {
           {/* 説明 */}
           <Description
             text="非日常を感じられる美しい景観の中で本格的な渓流釣りから、釣り堀まで体験でき、ファミリーやカップルに大人気です！"
-            linkHref="/"
+            linkHref="/fishing"
           />
         </div>
       </div>
@@ -132,7 +132,7 @@ export const ScrollingMain = () => {
         className="absolute -bottom-8 -right-8 z-30 rounded-full bg-gradient-main md:-bottom-12 md:-right-12"
       >
         <Image
-          src="/BrandStory/logo.svg"
+          src="/common/logo.svg"
           alt="logo"
           width={60}
           height={60}

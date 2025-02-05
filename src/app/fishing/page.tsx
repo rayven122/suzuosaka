@@ -1,26 +1,60 @@
+"use client";
 import Image from "next/image";
+import { LogoLink } from "../_components/common/LogoLink";
+import { motion } from "framer-motion";
 
 export default function Fishing() {
   return (
-    <main className="relative min-h-screen w-full bg-gradient-to-b from-cyan-200 to-cyan-400">
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="mb-12 text-3xl font-bold">釣り</h1>
-
-        <div className="mx-auto max-w-4xl">
+    <main className="relative min-h-screen w-full bg-gradient-hero">
+      <LogoLink />
+      <div className="mx-auto bg-gray-600 py-16">
+        <div className="ml-[250px] mt-[220px] flex justify-between gap-10 bg-yellow-400">
+          {/* タイトルとテキスト */}
+          <div className=" bg-red-400">
+            <h1 className="mb-2 font-shippori-antique-b1 text-4xl">釣り</h1>
+            <h1 className="font-shippori-antique-b1 text-7xl">FISHING</h1>
+            {/* セリフ */}
+            <ul className="mt-12 flex gap-2 text-base md:gap-4 md:text-3xl">
+              {["子供も大人も夢中になっちゃう！", "釣れた！釣れた！"].map(
+                (text, index) => (
+                  <li key={index} className="block">
+                    <motion.span
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.2 }}
+                      className="border-2 border-black bg-white font-shippori-antique-b1 [writing-mode:vertical-rl]"
+                    >
+                      {text}
+                    </motion.span>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
           {/* メインビジュアル */}
-          <div className="relative mb-12 h-96">
-            <Image
-              src="/images/fishing-hero.jpg"
-              alt="釣りの様子"
-              fill
-              className="rounded-lg object-cover"
-            />
-            <div className="absolute right-4 top-4 rounded-lg bg-white/90 p-4">
-              <p className="text-lg font-bold">釣れた！釣れた！</p>
-              <p className="text-sm">子供も大人も夢中になっちゃう！</p>
+          <div>
+            <div className="h-[410px] w-[620px]">
+              <Image
+                src="/Hero/fishing.png"
+                alt="釣りの様子"
+                height={410}
+                width={620}
+                className="rounded-[20px] border-2 border-black"
+              />
+            </div>
+            <div className="h-[280px] w-[400px] bg-red-400">
+              <Image
+                src="/fishing/fish.png"
+                alt="釣りの様子"
+                height={280}
+                width={400}
+                className="aspect-3/2 rounded-[20px] border-2 border-black"
+              />
             </div>
           </div>
+        </div>
 
+        <div className="mx-auto max-w-4xl">
           {/* 説明文 */}
           <div className="mb-12">
             <p className="mb-4 text-lg">

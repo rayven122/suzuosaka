@@ -17,7 +17,10 @@ export const CTA = () => {
             transition={{ duration: 0.5 }}
             className="relative text-center"
           >
-            <h2 className="mb-8 text-3xl font-bold">CONTACT</h2>
+            <p className="text-sm font-semibold md:text-lg">RESERVATION</p>
+            <h2 className="mb-8 font-shippori-antique-b1 text-xl font-medium md:text-3xl">
+              ご予約
+            </h2>
             <p className="mb-12 text-lg leading-relaxed">
               釣り体験やお食事のご予約、その他お問い合わせはこちらから
               <br />

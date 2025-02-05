@@ -70,7 +70,7 @@ export const BrandStory = () => {
         {/* 説明 */}
         <Description
           text="霊峰御嶽山の恵みを受ける200以上の滝と清流の町「飛騨小坂」。透明度の高い川には太古の昔からあまご、いわなが豊富に泳ぎ回り、現在でもこの地に数多く棲息しています。"
-          linkHref="/"
+          linkHref="/about"
         />
       </div>
 
@@ -153,7 +153,7 @@ export const ScrollingMain = () => {
         className="absolute -bottom-8 -right-8 z-30 rounded-full bg-gradient-main md:-bottom-12 md:-right-12"
       >
         <Image
-          src="/BrandStory/logo.svg"
+          src="/common/logo.svg"
           alt="logo"
           width={60}
           height={60}

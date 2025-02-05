@@ -54,7 +54,7 @@ export const Eatery = () => {
         {/* 説明 */}
         <Description
           text="あなたの知っている川魚の常識が変わるかもしれない！？ 美しい水で育った名物岩魚の天ぷらをはじめ塩焼、刺身などなど心も身体も満腹になります。"
-          linkHref="/"
+          linkHref="/eatery"
         />
       </div>
       <BubblesUnderMotion />
@@ -114,7 +114,7 @@ export const ScrollingMain = () => {
         className="absolute -bottom-8 -right-8 z-30 rounded-full bg-primary md:-bottom-12 md:-right-12 xl:-bottom-14 xl:-right-14"
       >
         <Image
-          src="/BrandStory/logo.svg"
+          src="/common/logo.svg"
           alt="logo"
           width={60}
           height={60}
