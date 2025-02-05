@@ -1,83 +1,102 @@
-# デバッグモンキーズ公式HP
+# 川の家おさか 公式ウェブサイト
 
-https://debug-monkeys.com/
+飛騨小坂の自然と伝統を発信する公式ウェブサイトです。
 
 ## 使用技術
 
-- [Next.js](https://nextjs.org/)
+- [Next.js](https://nextjs.org/) - App Router採用
 - [TypeScript](https://www.typescriptlang.org/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [MicroCMS](https://microcms.io/)
-- [AWS Amplify](https://aws.amazon.com/jp/amplify/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/) - アニメーション実装
+- [MicroCMS](https://microcms.io/) - コンテンツ管理
+- [Air リザーブ](https://airrsv.net/) - 予約管理システム
 
 ## ディレクトリ構成
 
 ```sh
 .
-├── public                # 画像及びPDFなど
-└── src
-    ├── app
-    │   ├── _components   # 汎用的なコンポーネント
-    │   ├── _functions    # 汎用的な関数
-    │   └── detail
-    │       └── [game]    # 詳細ページ
-    ├── libs              # ライブラリ
-    ├── schema            # microCMSのAPIスキーマ
-    └── types             # 型情報
+├── public/             # 静的アセット（画像など）
+└── src/
+    ├── app/           # Next.js App Router
+    │   ├── _components/  # 共通コンポーネント
+    │   ├── _functions/  # ユーティリティ関数
+    │   ├── about/      # 飛騨小坂について
+    │   ├── news/       # ニュース一覧・詳細
+    │   ├── fishing/    # 釣り体験
+    │   ├── eatery/     # お食事処
+    │   ├── access/     # アクセス
+    │   ├── reservation/ # 予約
+    │   └── contact/    # お問い合わせ
+    ├── libs/          # 外部サービス連携
+    ├── schema/        # MicroCMS APIスキーマ
+    └── types/         # 型定義
 ```
 
-## 全体の概要
+## 開発ガイドライン
 
-パッケージマネージャはpnpmを使用。
+### コンポーネント設計
 
-Next.jsでは[App Router](https://nextjs.org/docs/app)を使用する。
+- 基本的にサーバーコンポーネント（SC）を使用
+- クライアントコンポーネント（CC）は必要な場合のみ使用
+- Headless UIコンポーネントはCCとして実装
 
-基本的にサーバーコンポーネント（SC）を使用。やむを得ない場合のみクライアントコンポーネント（CC）を使用する。
+### スタイリング
 
-スタイリングはTailwindCSSを使用する。
+- Tailwind CSSを基本とする
+- [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin) - CMS記事のスタイリング
+- [HeadlessUI](https://headlessui.com/) - アクセシビリティ対応コンポーネント
 
-MicroCMSでゲームの情報を管理し、ゲーム一覧と記事ページの中身はゲーム情報APIから動的に生成する。
+### アニメーション
 
-## TailwinCSSの[HeadlessUI](https://headlessui.com/)
+- Framer Motionを使用
+- ローディングアニメーション
+  - ロゴ表示
+  - 泡の上昇アニメーション
+  - コンテンツ切り替え
 
-TailwindCSS公式が提供している、アクセシビリティ対応もしてくれている便利コンポーネント集。
+### コンテンツ管理（MicroCMS）
 
-ヘッダーメニューではHeadlessUIの[Popover](https://headlessui.com/react/popover)を使用。
+- ニュース記事
+- 釣り体験情報
+- お食事メニュー
+- 営業情報
 
-HeadlessUIはCCのみ使用可能なため、Headerコンポーネント(SC)でHeaderClientコンポーネント（CC）を呼び出している。
+### 外部サービス連携
 
-### [menu](https://headlessui.com/react/menu)との違い
+- Google Maps - アクセスページ
+- Airリザーブ - 予約管理
 
-menuはタブ選択時にはボタンがfocusできるが、中の選択肢にはfocusしない。矢印上下キーで選択肢を選択できるようになっている。
+## セットアップ
 
-ヘッダーメニューではメニュー内部もfocusできるpopoverの方が適している。
+```bash
+# パッケージインストール
+bun install
 
-App RouterでPopoverを開いている状態でPopoverコンテンツ外をクリックした時にPopoverが閉じないバグあり。対策用のdivを追加する必要がある。  
-参照：[HeadlessUIのissueコメント](https://github.com/tailwindlabs/headlessui/issues/2752#issuecomment-1724096430)
+# 開発サーバー起動
+bun dev
 
-## MicroCMSから読み込んだ記事のスタイリング
+# ビルド
+bun run build
 
-MicroCMSではリッチエディタかHTML記述を選べる（組み合わせも可）。ID指定などをしたい場合はHTMLで記載する。  
-参照：[Title: リッチエディタを使いつつ一部はHTMLで入稿する | microCMSブログ](https://blog.microcms.io/input-richeditor-and-html/)
+# 型チェック
+bun typecheck
+```
 
-MicroCMSのリッチエディタで作成した記事は[html-react-parser](https://github.com/remarkablemark/html-react-parser)でDOMに変換後、[@tailwind/typography](https://github.com/tailwindlabs/tailwindcss-typography)を使用してスタイリングする。  
-これはTailwind公式が提供する、タグ要素を適切にレイアウトされたライブラリ。
+## 環境変数
 
-さらにカスタムが必要であれば`prose`でクラスを指定、または`tailwind.config`に`prose`の指定を記述する。
+```env
+MICROCMS_API_KEY=your_api_key
+MICROCMS_SERVICE_DOMAIN=your_domain
+GOOGLE_MAPS_API_KEY=your_api_key
+```
 
-## microCMSから型を抽出する方法
+## MicroCMS型生成
 
-`API設定 > APIスキーマ > 「この設定をエクスポートする」`で出力されるjsonファイルを`src/schema`配下に格納し、`generate:cms types`コマンドを実行すると、`src/types`配下に型が出力される。
+```bash
+# APIスキーマから型定義を生成
+pnpm generate:cms types
+```
 
-ファイル名からエンドポイント名を取り出すので、スキーマのファイル名は変更しない。
+## ライセンス
 
-フォルダ上に同じエンドポイント名のファイルがある場合は、ファイル末尾の日付から最新のものが選択される。
-
-## AWS Amplify
-
-AWS Amplify × Route53でホスティング。
-`production_netlify`ブランチにプッシュすることでビルド可能。
-
-MicroCMSのAPI情報は環境変数で保持する。
-
-※以前はnetlifyでVue CLIのSSG環境を立てていたが、App RouterでSSRビルドすると404になるバグが発生したため、Amplifyに移行した。
+All rights reserved.
