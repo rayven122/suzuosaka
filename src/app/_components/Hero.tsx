@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import { Bubbles } from "./common/Bubbles";
-import Link from "next/link";
 import { LogoLink } from "./common/LogoLink";
 
 const CircularImage = ({

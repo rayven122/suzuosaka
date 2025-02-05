@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { Description } from "../common/Description";
 import { BubblesUnderMotion } from "../common/BubbleUnderMotion";
@@ -116,7 +115,7 @@ export const ScrollingMain = () => {
           </Marquee>
         </div>
         <Image
-          src="/fishing/fishing.png"
+          src="/Fishing/fishing.png"
           alt="釣り"
           height={450}
           width={450}
@@ -201,7 +200,7 @@ export const FishSub = () => {
       >
         {/* 画像 */}
         <Image
-          src="/fishing/fish.png"
+          src="/Fishing/fish.png"
           alt="釣った魚"
           height={350}
           width={350}

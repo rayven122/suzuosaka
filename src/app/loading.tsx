@@ -8,7 +8,7 @@ const Loading: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 20000); // 2秒後にローディング画面を閉じる
+    }, 2000); // 2秒後にローディング画面を閉じる
 
     return () => clearTimeout(timer);
   }, []);
