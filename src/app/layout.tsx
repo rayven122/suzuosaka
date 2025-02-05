@@ -4,6 +4,8 @@ import "./globals.css";
 import Footer from "./_components/Footer";
 import { Navigation } from "./_components/Navigation";
 import { Shippori_Antique_B1 } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const font = Noto_Sans({ subsets: ["latin"] });
 
@@ -23,6 +25,8 @@ export const metadata: Metadata = {
   openGraph: { images: "/ogp.png" },
 };
 
+const GTM_ID = "GTM-5T5JVT5Q";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,6 +40,8 @@ export default function RootLayout({
       <body
         className={`${font.className} ${shipporiAntiqueB1.variable} font-sans antialiased`}
       >
+        <GoogleTagManager gtmId={GTM_ID} />
+        <Toaster />
         {/* Popover（ヘッダーナビ）を開いている状態でPopoverコンテンツ外をクリックした時にPopoverが閉じないバグ対策用のdiv
          詳細: https://github.com/tailwindlabs/headlessui/issues/2752#issuecomment-1724096430 */}
         <div className="relative">

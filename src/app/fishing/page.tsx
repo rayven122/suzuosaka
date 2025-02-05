@@ -16,9 +16,9 @@ export default function Fishing() {
             <h1 className="mb-2 font-shippori-antique-b1 text-2xl md:text-3xl lg:text-4xl">
               釣り
             </h1>
-            <h1 className="font-shippori-antique-b1 text-4xl md:text-6xl lg:text-8xl">
+            <p className="font-shippori-antique-b1 text-4xl md:text-6xl lg:text-8xl">
               FISHING
-            </h1>
+            </p>
             {/* セリフ */}
             <ul className="my-6 flex flex-wrap gap-2 text-base md:my-12 md:gap-4 md:text-2xl lg:text-3xl xl:text-5xl">
               {["子供も大人も夢中になっちゃう！", "釣れた！釣れた！"].map(
