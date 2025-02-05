@@ -17,8 +17,9 @@ const shipporiAntiqueB1 = Shippori_Antique_B1({
 
 export const metadata: Metadata = {
   title: "川の家おさか公式サイト",
-  description: "川の家おさかは岐阜県下呂市にある、川の家おさかです。",
-  metadataBase: new URL("https://suzu-osaka.com"),
+  description:
+    "川の家おさかは、岐阜県下呂市小坂町の大洞川のほとりにある、川魚に特化したレジャー施設です。霊峰御嶽山の清流で育った魚を使った釣り体験や、その場で調理して味わえる新鮮な川魚料理を提供しています。自然豊かな環境で、池釣りや渓流釣りを楽しめ、ファミリーやカップルに人気のスポットです。",
+  metadataBase: new URL("https://www.suzu-osaka.com"),
   icons: {
     icon: "/favicon.ico",
   },
