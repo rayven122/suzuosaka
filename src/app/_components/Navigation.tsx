@@ -11,6 +11,7 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
+    { title: "TOP", label: "トップ", href: "/" },
     { title: "ABOUT", label: "おさかとは？", href: "/about" },
     { title: "FISHING", label: "釣り", href: "/fishing" },
     { title: "EATERY", label: "食堂", href: "/eatery" },
@@ -24,7 +25,7 @@ export const Navigation = () => {
       <nav className="fixed -right-5 -top-5 z-50">
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="grid size-[90px] place-items-center rounded-full border-2 border-black p-2 transition-colors hover:bg-[#00E2FF] md:size-[120px]"
+          className="grid size-[90px] place-items-center rounded-full border-2 border-black p-2 transition-colors hover:bg-primary md:size-[120px]"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -55,7 +56,7 @@ export const Navigation = () => {
             <div className="absolute -right-5 -top-5 z-10">
               <motion.button
                 onClick={() => setIsOpen(false)}
-                className="grid size-[90px] place-items-center rounded-full border-2 border-black bg-[#00E2FF] p-2 md:size-[120px]"
+                className="grid size-[90px] place-items-center rounded-full border-2 border-black bg-primary p-2 md:size-[120px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

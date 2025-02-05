@@ -24,6 +24,11 @@ export default function Footer() {
         <nav className="mb-8">
           <ul className="flex flex-wrap justify-center gap-8 text-gray-800">
             <li>
+              <Link href="/" className="hover:text-gray-600">
+                TOP
+              </Link>
+            </li>
+            <li>
               <Link href="/about" className="hover:text-gray-600">
                 ABOUT
               </Link>
@@ -59,7 +64,7 @@ export default function Footer() {
         {/* SNSアイコン */}
         <div className="mb-8 flex justify-center gap-4">
           <Link href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-            <FaInstagram className="text-2xl" />
+            <FaInstagram className="text-2xl md:text-4xl" />
           </Link>
         </div>
 

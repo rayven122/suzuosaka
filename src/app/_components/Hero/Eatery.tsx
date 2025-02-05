@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
-import { Description } from "./common/Description";
-import { BubblesUnderMotion } from "./common/BubbleUnderMotion";
+import { Description } from "../common/Description";
+import { BubblesUnderMotion } from "../common/BubbleUnderMotion";
 
 export const Eatery = () => {
   return (

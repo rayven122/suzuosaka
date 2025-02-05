@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
-import { Bubbles } from "./common/Bubble";
+import { Bubbles } from "./common/Bubbles";
+import Link from "next/link";
 
 const CircularImage = ({
   src,
@@ -26,7 +27,10 @@ const CircularImage = ({
 export const Hero = () => {
   return (
     <section className="relative h-[600px] w-full overflow-hidden bg-gradient-hero md:h-[1000px]">
-      <div className="absolute left-4 top-2 z-10 mx-auto max-w-7xl flex-col md:left-10 md:top-10">
+      <Link
+        href="/"
+        className="absolute left-4 top-2 z-10 mx-auto max-w-7xl flex-col md:left-10 md:top-10"
+      >
         <Image
           src="/common/logo-vertical.svg"
           alt="川の家 おさか"
@@ -34,7 +38,7 @@ export const Hero = () => {
           height={60}
           className="w-[90px] md:w-[150px] lg:w-[200px]"
         />
-      </div>
+      </Link>
       {/* 画面に滞在する泡 */}
       <Image
         src="/Hero/bubble2.svg"

@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CTA() {
+export const CTA = () => {
   return (
-    <section className="relative w-full bg-[#7FE5F0] py-20">
+    <section className="relative w-full  py-20">
       <div className="container mx-auto px-4">
         <div className="relative mx-auto max-w-4xl rounded-2xl bg-white p-8 shadow-xl md:p-12">
           {/* 装飾的な要素 */}
@@ -54,36 +54,6 @@ export default function CTA() {
       </div>
 
       {/* 装飾的な泡の要素 */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <Image
-          src="/common/bubble.svg"
-          alt="装飾"
-          width={200}
-          height={200}
-          className="absolute -left-10 bottom-0 w-40 opacity-50"
-        />
-        <Image
-          src="/common/bubble.svg"
-          alt="装飾"
-          width={150}
-          height={150}
-          className="absolute -right-10 top-0 w-32 opacity-30"
-        />
-        <Image
-          src="/common/bubble.svg"
-          alt="装飾"
-          width={100}
-          height={100}
-          className="absolute left-1/4 top-1/3 w-24 opacity-20"
-        />
-        <Image
-          src="/common/bubble.svg"
-          alt="装飾"
-          width={120}
-          height={120}
-          className="absolute right-1/4 top-2/3 w-28 opacity-25"
-        />
-      </div>
     </section>
   );
-}
+};

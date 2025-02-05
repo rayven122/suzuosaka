@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
-import { Description } from "./common/Description";
-import { BubblesUnderMotion } from "./common/BubbleUnderMotion";
-import { BubblesUpperMotion } from "./common/BubbleUpperMotion";
+import { Description } from "../common/Description";
+import { BubblesUnderMotion } from "../common/BubbleUnderMotion";
+import { BubblesUpperMotion } from "../common/BubbleUpperMotion";
 
 export const Fishing = () => {
   return (

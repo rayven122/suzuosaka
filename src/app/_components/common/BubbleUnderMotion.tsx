@@ -3,7 +3,6 @@ import Image from "next/image";
 
 export const BubblesUnderMotion = () => {
   const underBubbles = [
-    { bottom: "-70px", right: "53.47%" }, // 670 / 1440 * 100
     { bottom: "-70px", right: "42.36%" }, // 610 / 1440 * 100
     { bottom: "-70px", right: "38.19%" }, // 550 / 1440 * 100
     { bottom: "-70px", right: "34.03%" }, // 490 / 1440 * 100
