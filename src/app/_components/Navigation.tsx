@@ -15,7 +15,7 @@ export const Navigation = () => {
     { title: "ABOUT", label: "おさかとは？", href: "/#brand-story" },
     { title: "FISHING", label: "釣り", href: "/fishing" },
     { title: "EATERY", label: "食堂", href: "/#eatery" },
-    { title: "NEWS", label: "お知らせ", href: "/news" },
+    { title: "NEWS", label: "お知らせ", href: "/#news" },
     { title: "ACCESS", label: "アクセス", href: "/#access" },
     { title: "CONTACT", label: "お問い合わせ", href: "/contact" },
   ];

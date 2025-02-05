@@ -8,12 +8,49 @@ export async function POST(request: Request) {
 
     // Slackへの通知
     const slackPayload = {
-      text: `新しいお問い合わせがありました\n
-      種別: ${inquiryType.join(", ")}\n
-      名前: ${name}\n
-      メール: ${email}\n
-      電話番号: ${phone}\n
-      内容:\n${message}`,
+      blocks: [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "🔔 HPから新しいお問い合わせがありました",
+            emoji: true,
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            {
+              type: "mrkdwn",
+              text: "*種別:*\n" + inquiryType.join(", "),
+            },
+            {
+              type: "mrkdwn",
+              text: "*名前:*\n" + name,
+            },
+            {
+              type: "mrkdwn",
+              text: "*メール:*\n<mailto:" + email + "|" + email + ">",
+            },
+            {
+              type: "mrkdwn",
+              text:
+                "*電話番号:*\n<tel:" +
+                phone.replace(/[-\s]/g, "") +
+                "|" +
+                phone +
+                ">",
+            },
+          ],
+        },
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "*お問い合わせ内容:*\n" + message,
+          },
+        },
+      ],
     };
 
     await fetch(process.env.SLACK_WEBHOOK_URL!, {

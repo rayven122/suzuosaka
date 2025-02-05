@@ -1,9 +1,7 @@
-import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import parse from "html-react-parser";
-import Spinner from "@/app/_components/Spinner";
+
 import { getBlogData } from "@/app/_functions/getBlogData";
 import { Blog } from "@/types/blog-types";
 

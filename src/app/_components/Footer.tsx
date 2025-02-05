@@ -29,12 +29,12 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-gray-600">
+              <Link href="/#brand-story" className="hover:text-gray-600">
                 ABOUT
               </Link>
             </li>
             <li>
-              <Link href="/news" className="hover:text-gray-600">
+              <Link href="/#news" className="hover:text-gray-600">
                 NEWS
               </Link>
             </li>
@@ -44,12 +44,12 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/eatery" className="hover:text-gray-600">
+              <Link href="/#eatery" className="hover:text-gray-600">
                 EATERY
               </Link>
             </li>
             <li>
-              <Link href="/access" className="hover:text-gray-600">
+              <Link href="/#access" className="hover:text-gray-600">
                 ACCESS
               </Link>
             </li>
