@@ -12,10 +12,10 @@ export const Navigation = () => {
 
   const menuItems = [
     { title: "TOP", label: "トップ", href: "/" },
-    { title: "ABOUT", label: "おさかとは？", href: "/#brand-story" },
+    // { title: "ABOUT", label: "おさかとは？", href: "/#brand-story" },
     { title: "FISHING", label: "釣り", href: "/fishing" },
-    { title: "EATERY", label: "食堂", href: "/#eatery" },
-    { title: "NEWS", label: "お知らせ", href: "/#news" },
+    // { title: "EATERY", label: "食堂", href: "/#eatery" },
+    // { title: "NEWS", label: "お知らせ", href: "/#news" },
     { title: "RESERVATION", label: "予約", href: "/reservation" },
     { title: "ACCESS", label: "アクセス", href: "/#access" },
     { title: "CONTACT", label: "お問い合わせ", href: "/contact" },
@@ -98,7 +98,7 @@ export const Navigation = () => {
             <div className="flex h-screen flex-col px-[60px] md:px-[100px]">
               {/* メインメニュー */}
               <div className="flex flex-1 flex-col justify-center">
-                <div className="grid gap-8 md:grid-cols-2 md:gap-x-32 md:gap-y-16">
+                <div className="grid gap-8 md:grid-cols-2 md:gap-x-24 md:gap-y-12 xl:gap-x-28 xl:gap-y-16">
                   {menuItems.map((item, index) => (
                     <motion.div
                       key={item.title}
@@ -111,10 +111,10 @@ export const Navigation = () => {
                         onClick={() => setIsOpen(false)}
                         className="group flex flex-col items-start"
                       >
-                        <span className="text-base tracking-wider transition-colors group-hover:text-primary md:text-lg lg:text-xl">
+                        <span className="text-base tracking-wider transition-colors group-hover:text-primary md:text-lg">
                           {item.title}
                         </span>
-                        <span className="text-2xl font-bold transition-transform group-hover:translate-x-2 md:text-3xl lg:text-4xl">
+                        <span className="text-2xl font-bold transition-transform group-hover:translate-x-2 md:text-3xl">
                           {item.label}
                         </span>
                       </Link>
@@ -128,7 +128,7 @@ export const Navigation = () => {
                       href={INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 transition-colors hover:text-[#00E2FF]"
+                      className="flex items-center gap-2 transition-colors hover:text-primary"
                     >
                       <FaInstagram className="text-3xl" />
                       <span className="text-xl">@river_house_osaka</span>
@@ -148,14 +148,14 @@ export const Navigation = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute -top-4 left-0 w-full"
+              className="absolute -top-4 left-0 w-full xl:-top-10"
             >
               <Image
                 src="/common/bubble2.svg"
                 alt="泡"
                 width={200}
                 height={80}
-                className="w-[80%]"
+                className="w-full"
               />
             </motion.div>
 
@@ -168,14 +168,14 @@ export const Navigation = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute -bottom-6 left-0 w-full"
+              className="absolute -bottom-6 left-0 w-full xl:-bottom-10"
             >
               <Image
                 src="/common/bubble.svg"
                 alt="泡"
                 width={200}
                 height={80}
-                className="w-[80%]"
+                className="w-full"
               />
             </motion.div>
 

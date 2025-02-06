@@ -98,7 +98,11 @@ export default function Fishing() {
                     </td>
                   </tr>
                   <tr className="border-b-2 border-black">
-                    <td className="py-4">渓流釣り道具レンタル（１セット）</td>
+                    <td className="py-4">
+                      渓流釣り道具レンタル
+                      <br />
+                      （1セット）
+                    </td>
                     <td className="py-4">3,500円</td>
                     <td className="py-4 text-gray-600 ">
                       渓流用竿、餌、バケツがすべて含まれたセットです。
@@ -108,7 +112,10 @@ export default function Fishing() {
                     </td>
                   </tr>
                   <tr className="border-b-2 border-black">
-                    <td className="py-4">池釣り道具レンタル（１セット）</td>
+                    <td className="py-4">
+                      池釣り道具レンタル <br />
+                      （1セット）
+                    </td>
                     <td className="py-4">2,500円</td>
                     <td className="py-4 text-gray-600 ">
                       池釣り用の竿、餌、バケツがセットになっています。
