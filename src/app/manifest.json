@@ -1,11 +1,11 @@
 {
-  "name": "Next.js App",
-  "short_name": "Next.js App",
-  "description": "Next.js App",
+  "name": "川の家おさか~RIVER HOUSE OSAKA~",
+  "short_name": "川の家おさか",
+  "description": "川の家おさかは、岐阜県下呂市小坂町の大洞川のほとりにある、川魚に特化したレジャー施設です。霊峰御嶽山の清流で育った魚を使った釣り体験や、その場で調理して味わえる新鮮な川魚料理を提供しています。自然豊かな環境で、池釣りや渓流釣りを楽しめ、ファミリーやカップルに人気のスポットです。",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fff",
-  "theme_color": "#fff",
+  "background_color": "#00E2FF",
+  "theme_color": "#00E2FF",
   "icons": [
     { "src": "/icon-192x192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "/icon-512x512.png", "type": "image/png", "sizes": "512x512" }
