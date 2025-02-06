@@ -4,6 +4,7 @@ import Marquee from "react-fast-marquee";
 import { Bubbles } from "./common/Bubbles";
 
 import { LogoLink } from "./common/LogoLink";
+import Link from "next/link";
 
 const CircularImage = ({
   src,
@@ -88,11 +89,18 @@ export const Hero = () => {
       <div className="absolute bottom-0 left-0 w-full">
         {/* お品書き */}
         <ul className="mb-6 ml-3 flex font-bold md:mb-10 md:ml-14 md:text-3xl lg:text-4xl">
-          {["お食事", "釣り", "養殖場見学", "体験"].map((text, index) => (
+          {[
+            { text: "お食事", href: "/#eatery" },
+            { text: "釣り体験", href: "/fishing" },
+            { text: "予約", href: "/reservation" },
+            { text: "アクセス", href: "/access" },
+          ].map(({ text, href }, index) => (
             <li key={index} className="mr-2 block min-w-[28px] md:mr-4">
-              <span className="border-2 border-black bg-primary [writing-mode:vertical-rl]">
-                {text}
-              </span>
+              <Link href={href} className="block">
+                <span className="hover:bg-secondary cursor-pointer border-2 border-black bg-primary transition-colors duration-300 [writing-mode:vertical-rl]">
+                  {text}
+                </span>
+              </Link>
             </li>
           ))}
         </ul>

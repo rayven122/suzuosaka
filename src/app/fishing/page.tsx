@@ -93,6 +93,8 @@ export default function Fishing() {
                     <td className="py-4">500円</td>
                     <td className="py-4 text-gray-600">
                       1人あたり500円です。ご参加いただく人数に応じたシンプルな料金設定です！
+                      <br />
+                      お子さんは無料です。（小学生未満）
                     </td>
                   </tr>
                   <tr className="border-b-2 border-black">
@@ -119,7 +121,7 @@ export default function Fishing() {
                     <td className="py-4">魚代</td>
                     <td className="py-4">300円/1匹</td>
                     <td className="py-4 text-gray-600 ">
-                      釣ったお魚は、即日調理してその場で味わうか、お持ち帰りいただけます。お好みでお選びください！
+                      釣ったお魚は、その場で調理して味わうか、お持ち帰りいただけます。お好みでお選びください！氷は無料でお付けします。
                     </td>
                   </tr>
                   <tr className="border-b-2 border-black">

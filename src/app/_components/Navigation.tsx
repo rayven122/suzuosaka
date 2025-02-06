@@ -16,6 +16,7 @@ export const Navigation = () => {
     { title: "FISHING", label: "釣り", href: "/fishing" },
     { title: "EATERY", label: "食堂", href: "/#eatery" },
     { title: "NEWS", label: "お知らせ", href: "/#news" },
+    { title: "RESERVATION", label: "予約", href: "/reservation" },
     { title: "ACCESS", label: "アクセス", href: "/#access" },
     { title: "CONTACT", label: "お問い合わせ", href: "/contact" },
   ];
@@ -110,10 +111,10 @@ export const Navigation = () => {
                         onClick={() => setIsOpen(false)}
                         className="group flex flex-col items-start"
                       >
-                        <span className="text-base tracking-wider transition-colors group-hover:text-[#00E2FF] md:text-lg lg:text-xl">
+                        <span className="text-base tracking-wider transition-colors group-hover:text-primary md:text-lg lg:text-xl">
                           {item.title}
                         </span>
-                        <span className="text-2xl font-bold transition-transform group-hover:translate-x-2 md:text-3xl lg:text-5xl">
+                        <span className="text-2xl font-bold transition-transform group-hover:translate-x-2 md:text-3xl lg:text-4xl">
                           {item.label}
                         </span>
                       </Link>
@@ -154,7 +155,7 @@ export const Navigation = () => {
                 alt="泡"
                 width={200}
                 height={80}
-                className="w-full"
+                className="w-[80%]"
               />
             </motion.div>
 
@@ -174,7 +175,7 @@ export const Navigation = () => {
                 alt="泡"
                 width={200}
                 height={80}
-                className="w-full"
+                className="w-[80%]"
               />
             </motion.div>
 

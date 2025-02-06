@@ -27,11 +27,10 @@ export default function Reservation() {
           <div className="mt-12 rounded-lg bg-white/80 p-8">
             <h2 className="mb-6 text-xl font-bold">ご予約に関する注意事項</h2>
             <ul className="list-disc space-y-4 pl-6">
-              <li>ご予約は2名様から承ります。</li>
               <li>
                 天候や河川の状況により、やむを得ず営業を中止する場合がございます。
               </li>
-              <li>キャンセルは3日前までにご連絡ください。</li>
+              <li>キャンセルは当日朝までにご連絡ください。</li>
               <li>
                 当日のキャンセルはキャンセル料が発生する場合がございます。
               </li>

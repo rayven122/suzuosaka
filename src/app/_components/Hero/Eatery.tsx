@@ -69,12 +69,12 @@ export const ScrollingMain = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-10 size-[250px] md:size-[450px] xl:size-[550px]"
+      className="relative mb-10 size-[250px] md:size-[450px]"
     >
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 aspect-square size-[250px] overflow-hidden md:size-[450px] xl:size-[550px]"
+        className="relative z-10 aspect-square size-[250px] overflow-hidden md:size-[450px]"
       >
         <div className="absolute top-0 z-20 w-full rounded-t-[20px] border-2 border-b-0 border-black bg-white py-1 md:py-2">
           <Marquee
@@ -102,12 +102,12 @@ export const ScrollingMain = () => {
           alt="釣り"
           height={550}
           width={550}
-          className="aspect-square size-[250px] rounded-[20px] border-2 border-black object-cover md:size-[450px] xl:size-[550px]"
+          className="aspect-square size-[250px] rounded-[20px] border-2 border-black object-cover md:size-[450px]"
         />
       </motion.div>
 
       {/* 装飾的な要素 */}
-      <div className="absolute left-3 top-2 z-0 size-[250px] rounded-[20px] border-2 border-black bg-primary md:size-[450px] xl:size-[550px]" />
+      <div className="absolute left-3 top-2 z-0 size-[250px] rounded-[20px] border-2 border-black bg-primary md:size-[450px]" />
       <motion.div
         whileHover={{ rotate: 360 }}
         transition={{ duration: 1 }}
