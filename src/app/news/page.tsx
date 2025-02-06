@@ -2,6 +2,7 @@ import Link from "next/link";
 import { client } from "@/libs/client";
 import type { News } from "@/types/news";
 import { format } from "date-fns";
+import { LogoLink2 } from "../_components/common/LogoLink2";
 
 export const revalidate = 60;
 
@@ -18,6 +19,7 @@ export default async function News() {
 
   return (
     <main className="relative min-h-screen w-full bg-gradient-main">
+      <LogoLink2 />
       <div className="container mx-auto px-4 py-16">
         <h1 className="mb-12 text-3xl font-bold">お知らせ</h1>
 
