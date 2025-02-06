@@ -122,7 +122,7 @@ export const Navigation = () => {
                   ))}
                 </div>
 
-                <div className="mt-20 hidden md:flex">
+                {/* <div className="mt-20 hidden md:flex">
                   <motion.div whileHover={{ scale: 1.1 }}>
                     <Link
                       href={INSTAGRAM_URL}
@@ -134,7 +134,7 @@ export const Navigation = () => {
                       <span className="text-xl">@river_house_osaka</span>
                     </Link>
                   </motion.div>
-                </div>
+                </div> */}
               </div>
             </div>
 
