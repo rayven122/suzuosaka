@@ -83,21 +83,6 @@ export default function Eatery() {
           </div>
         </div>
       </div>
-
-      {/* 波のデザイン */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          className="h-24 w-full"
-          viewBox="0 0 1440 74"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0,32L80,37.3C160,43,320,53,480,58.7C640,64,800,64,960,58.7C1120,53,1280,43,1360,37.3L1440,32L1440,74L1360,74C1280,74,1120,74,960,74C800,74,640,74,480,74C320,74,160,74,80,74L0,74Z"
-            fill="#0099ff"
-          />
-        </svg>
-      </div>
     </main>
   );
 }
