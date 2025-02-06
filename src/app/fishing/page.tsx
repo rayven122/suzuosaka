@@ -41,7 +41,7 @@ export default function Fishing() {
           <div className="relative mt-28 h-[500px] w-full md:h-[550px] lg:mt-40 lg:h-[800px] xl:h-[900px]">
             <div className="absolute -right-[30px] top-0 mb-8 w-[300px] md:right-0 md:w-[400px] lg:z-10 lg:w-[620px] xl:w-[800px]">
               <Image
-                src="/fishing/fishing2.png"
+                src="/Fishing/fishing2.png"
                 alt="釣りの様子"
                 width={620}
                 height={410}
@@ -51,7 +51,7 @@ export default function Fishing() {
             </div>
             <div className="absolute -left-[100px] bottom-0 w-[200px] md:-left-[50px]  md:w-[300px] lg:w-[400px] xl:-left-[200px] xl:w-[500px]">
               <Image
-                src="/fishing/fish2.png"
+                src="/Fishing/fish2.png"
                 alt="釣りの様子"
                 width={400}
                 height={280}
