@@ -1,10 +1,10 @@
 import { client } from "@/libs/client";
-import { Blog } from "@/types/blog-types";
+import { News } from "@/types/news";
 
-export async function getBlogData(id: string): Promise<Blog | null> {
+export async function getNewsData(id: string): Promise<News | null> {
   try {
     return await client.get({
-      endpoint: `blogs/${id}`,
+      endpoint: `news/${id}`,
     });
   } catch (error) {
     console.error(error);

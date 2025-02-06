@@ -4,7 +4,7 @@ import { NewsClient } from "./NewsClient";
 
 async function getNews() {
   const data = await client.get({
-    endpoint: "blogs",
+    endpoint: "news",
     queries: {
       fields: "id,title,publishedAt,description",
       limit: 3,

@@ -17,7 +17,7 @@ type Structure<T, P> = T extends "get"
     ? GetsType<{ id: string } & DateType & Required<P>>
     : Partial<DateType> & (T extends "patch" ? Partial<P> : P);
 
-export type Blog<T = "get"> = Structure<
+export type News<T = "get"> = Structure<
   T,
   {
     /**
@@ -48,18 +48,18 @@ export type Blog<T = "get"> = Structure<
 
 export interface EndPoints {
   get: {
-    blogs: Blog<"get">;
+    news: News<"get">;
   };
   gets: {
-    blogs: Blog<"gets">;
+    news: News<"gets">;
   };
   post: {
-    blogs: Blog<"post">;
+    news: News<"post">;
   };
   put: {
-    blogs: Blog<"put">;
+    news: News<"put">;
   };
   patch: {
-    blogs: Blog<"patch">;
+    news: News<"patch">;
   };
 }

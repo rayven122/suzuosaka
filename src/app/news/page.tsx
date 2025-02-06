@@ -1,21 +1,28 @@
 import Link from "next/link";
+import { client } from "@/libs/client";
+import type { News } from "@/types/news";
+import { format } from "date-fns";
 
-export default function News() {
-  const dummyNews = Array(10)
-    .fill(null)
-    .map((_, i) => ({
-      id: i + 1,
-      date: "2024/00/00",
-      title: "ここにタイトルが入ります。この文章はダミーです。",
-    }));
+export const revalidate = 60;
+
+async function getNews() {
+  const response = await client.getList<News>({
+    endpoint: "news",
+    queries: { limit: 10, orders: "-publishedAt" },
+  });
+  return response;
+}
+
+export default async function News() {
+  const { contents: newsList } = await getNews();
 
   return (
-    <main className="relative min-h-screen w-full bg-gradient-to-b from-cyan-200 to-cyan-400">
+    <main className="relative min-h-screen w-full bg-gradient-main">
       <div className="container mx-auto px-4 py-16">
         <h1 className="mb-12 text-3xl font-bold">お知らせ</h1>
 
         <div className="mx-auto max-w-4xl">
-          {dummyNews.map((news) => (
+          {newsList.map((news) => (
             <Link
               key={news.id}
               href={`/news/${news.id}`}
@@ -23,7 +30,9 @@ export default function News() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <time className="text-sm text-gray-600">{news.date}</time>
+                  <time className="text-sm text-gray-600">
+                    {format(new Date(news.publishedAt), "yyyy/MM/dd")}
+                  </time>
                   <h2 className="mt-2 text-lg">{news.title}</h2>
                 </div>
                 <div className="text-2xl transition-transform group-hover:translate-x-2">
@@ -47,21 +56,6 @@ export default function News() {
             </button>
           ))}
         </div>
-      </div>
-
-      {/* 波のデザイン */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          className="h-24 w-full"
-          viewBox="0 0 1440 74"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0,32L80,37.3C160,43,320,53,480,58.7C640,64,800,64,960,58.7C1120,53,1280,43,1360,37.3L1440,32L1440,74L1360,74C1280,74,1120,74,960,74C800,74,640,74,480,74C320,74,160,74,80,74L0,74Z"
-            fill="#0099ff"
-          />
-        </svg>
       </div>
     </main>
   );

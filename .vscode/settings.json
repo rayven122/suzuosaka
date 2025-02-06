@@ -11,5 +11,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "cSpell.words": ["Insta", "markuplint", "MICROCMS", "shippori", "suzu"]
+  "cSpell.words": [
+    "eyecatch",
+    "Insta",
+    "markuplint",
+    "MICROCMS",
+    "shippori",
+    "suzu"
+  ]
 }
