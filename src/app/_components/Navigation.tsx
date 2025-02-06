@@ -97,7 +97,7 @@ export const Navigation = () => {
             </div>
             <div className="flex h-screen flex-col px-[60px] md:px-[100px]">
               {/* メインメニュー */}
-              <div className="flex flex-1 flex-col justify-center">
+              <div className="z-50 flex flex-1 flex-col justify-center">
                 <div className="grid gap-8 md:grid-cols-2 md:gap-x-24 md:gap-y-12 xl:gap-x-28 xl:gap-y-16">
                   {menuItems.map((item, index) => (
                     <motion.div
