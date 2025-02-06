@@ -87,7 +87,7 @@ export const Hero = () => {
       {/* 下部 */}
       <div className="absolute bottom-0 left-0 w-full">
         {/* お品書き */}
-        <ul className="mb-6 ml-5 flex gap-2 font-bold md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
+        <ul className="mb-6 ml-3 flex gap-2 bg-yellow-500/60 font-bold md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
           {["お食事", "釣り", "養殖場見学", "体験"].map((text, index) => (
             <li key={index} className="block">
               <span className="border-2 border-black bg-primary [writing-mode:vertical-rl]">

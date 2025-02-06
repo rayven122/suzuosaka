@@ -25,7 +25,7 @@ export const Fishing = () => {
         </motion.div>
 
         {/* セリフ */}
-        <ul className="mb-4 ml-2 flex gap-2 text-base md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
+        <ul className="mb-4 ml-2 flex gap-2 bg-yellow-500/60 text-base md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
           {["子供も大人も夢中になっちゃう！", "釣れた！釣れた！"].map(
             (text, index) => (
               <li key={index} className="block">
