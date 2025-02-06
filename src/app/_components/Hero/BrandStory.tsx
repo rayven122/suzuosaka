@@ -41,7 +41,7 @@ export const BrandStory = () => {
         </motion.div>
 
         {/* セリフ */}
-        <ul className="z-10 flex gap-2 bg-yellow-500/60 text-base md:mb-10 md:ml-14 md:gap-4 md:text-3xl lg:text-4xl">
+        <ul className="z-10 flex space-x-2 bg-yellow-500/60 text-base md:mb-10 md:ml-14 md:space-x-4 md:text-3xl lg:text-4xl">
           {["面白すぎる「川」の世界へ", "ちゃぽん！"].map((text, index) => (
             <li key={index} className="block">
               <motion.span
