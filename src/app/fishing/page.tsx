@@ -20,10 +20,10 @@ export default function Fishing() {
               FISHING
             </p>
             {/* セリフ */}
-            <ul className="my-6 flex flex-wrap gap-2 bg-yellow-500/60 text-base md:my-12 md:gap-4 md:text-2xl lg:text-3xl xl:text-5xl">
+            <ul className="my-6 flex flex-wrap gap-2 text-base md:my-12 md:gap-4 md:text-2xl lg:text-3xl xl:text-5xl">
               {["子供も大人も夢中になっちゃう！", "釣れた！釣れた！"].map(
                 (text, index) => (
-                  <li key={index} className="block">
+                  <li key={index} className="block min-w-[28px]">
                     <motion.span
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  openGraph: { images: "/ogp.png" },
+  openGraph: { images: "/common/ogp.png" },
 };
 
 const GTM_ID = "GTM-5T5JVT5Q";

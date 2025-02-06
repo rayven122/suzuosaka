@@ -23,13 +23,13 @@ export const Eatery = () => {
           </h2>
         </motion.div>
         {/* セリフ */}
-        <ul className="flex w-full gap-2 bg-yellow-500/60 text-base md:mb-10 md:mr-20 md:gap-4 md:text-3xl lg:text-4xl">
+        <ul className="flex gap-2 text-base md:mb-10 md:mr-20 md:gap-4 md:text-3xl lg:text-4xl">
           {[
             "食べてさらに良し！",
             "景色良し、釣って良し、",
             "ふわっふわっ。サックサク。",
           ].map((text, index) => (
-            <li key={index} className="block">
+            <li key={index} className="block min-w-[28px]">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
