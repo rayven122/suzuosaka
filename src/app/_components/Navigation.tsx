@@ -16,7 +16,12 @@ export const Navigation = () => {
     { title: "FISHING", label: "釣り", href: "/fishing" },
     // { title: "EATERY", label: "食堂", href: "/#eatery" },
     // { title: "NEWS", label: "お知らせ", href: "/#news" },
-    { title: "RESERVATION", label: "予約", href: "/reservation" },
+    {
+      title: "RESERVATION",
+      label: "予約",
+      href: "https://airrsv.net/osakano-osakana-village/calendar",
+      isExternal: true,
+    },
     { title: "ACCESS", label: "アクセス", href: "/#access" },
     { title: "CONTACT", label: "お問い合わせ", href: "/contact" },
   ];
@@ -110,6 +115,12 @@ export const Navigation = () => {
                         href={item.href}
                         onClick={() => setIsOpen(false)}
                         className="group flex flex-col items-start"
+                        {...(item.isExternal
+                          ? {
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                            }
+                          : {})}
                       >
                         <span className="text-base tracking-wider transition-colors group-hover:text-primary md:text-lg">
                           {item.title}

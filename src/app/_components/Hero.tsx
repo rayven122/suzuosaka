@@ -92,11 +92,23 @@ export const Hero = () => {
           {[
             { text: "お食事", href: "/#eatery" },
             { text: "釣り体験", href: "/fishing" },
-            { text: "予約", href: "/reservation" },
+            {
+              text: "予約",
+              href: "https://airrsv.net/osakano-osakana-village/calendar",
+            },
             { text: "アクセス", href: "/access" },
           ].map(({ text, href }, index) => (
             <li key={index} className="mr-2 block min-w-[28px] md:mr-4">
-              <Link href={href} className="block">
+              <Link
+                href={href}
+                className="block"
+                {...(href.startsWith("http")
+                  ? {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    }
+                  : {})}
+              >
                 <span className="hover:bg-secondary cursor-pointer border-2 border-black bg-primary transition-colors duration-300 [writing-mode:vertical-rl]">
                   {text}
                 </span>

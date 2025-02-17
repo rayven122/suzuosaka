@@ -73,8 +73,10 @@ export default function Fishing() {
             className=""
           >
             <Link
-              href="/reservation"
+              href="https://airrsv.net/osakano-osakana-village/calendar"
               className="inline-block rounded-full bg-white px-8 py-3 font-bold text-primary shadow-md transition-all hover:bg-primary hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               予約はこちら
             </Link>
