@@ -96,7 +96,7 @@ export const Hero = () => {
               text: "予約",
               href: "https://airrsv.net/osakano-osakana-village/calendar",
             },
-            { text: "アクセス", href: "/access" },
+            { text: "アクセス", href: "#access" },
           ].map(({ text, href }, index) => (
             <li key={index} className="mr-2 block min-w-[28px] md:mr-4">
               <Link
