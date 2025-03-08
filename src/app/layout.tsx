@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
-const GTM_ID = "G-02DQZ3E1H9";
+const GTM_ID = "GTM-5T5JVT5Q";
 
 export default function RootLayout({
   children,
