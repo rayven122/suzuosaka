@@ -21,9 +21,6 @@ export default function PostcardPage() {
       } else {
         console.error("dataLayer not found"); // デバッグ用
       }
-
-      // GA4のdebug_modeを有効にする
-      window.gtag("config", "G-02DQZ3E1H9", { debug_mode: true });
     }
 
     const timer = setTimeout(() => {
