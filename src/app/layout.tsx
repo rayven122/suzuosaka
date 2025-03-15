@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
@@ -6,7 +7,6 @@ import { Navigation } from "./_components/Navigation";
 import { Shippori_Antique_B1 } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { GoogleTagManager } from "@next/third-parties/google";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const font = Noto_Sans({ subsets: ["latin"] });
 
@@ -46,8 +46,6 @@ export default function RootLayout({
       >
         <GoogleTagManager gtmId={GTM_ID} />
         <Toaster />
-        {/* Popover（ヘッダーナビ）を開いている状態でPopoverコンテンツ外をクリックした時にPopoverが閉じないバグ対策用のdiv
-         詳細: https://github.com/tailwindlabs/headlessui/issues/2752#issuecomment-1724096430 */}
         <div className="relative">
           <Navigation />
           {children}
