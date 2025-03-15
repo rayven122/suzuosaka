@@ -46,7 +46,6 @@ export default function RootLayout({
       >
         <GoogleTagManager gtmId={GTM_ID} />
         <Toaster />
-        <SpeedInsights />
         {/* Popover（ヘッダーナビ）を開いている状態でPopoverコンテンツ外をクリックした時にPopoverが閉じないバグ対策用のdiv
          詳細: https://github.com/tailwindlabs/headlessui/issues/2752#issuecomment-1724096430 */}
         <div className="relative">

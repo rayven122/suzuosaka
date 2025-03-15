@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 const plugin = require("tailwindcss/plugin");
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -21,6 +22,42 @@ const config: Config = {
           900: "#3c3c3c",
         },
         primary: { DEFAULT: "#00E2FF", light: "#00E2FF", dark: "#00E2FF" },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -29,7 +66,7 @@ const config: Config = {
         "bubble-gradient":
           "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.30) 50%, rgba(255, 255, 255, 0.20) 100%)",
         "gradient-main": "linear-gradient(to bottom right, #06F9C2, #01E7EF)",
-        "gradient-hero": "linear-gradient(to bottom, #01E7EF,#06F9C2 )",
+        "gradient-hero": "linear-gradient(to bottom, #01E7EF, #06F9C2)",
       },
       keyframes: {
         float: {
@@ -41,20 +78,24 @@ const config: Config = {
           "50%": { transform: "scale(1.1)" },
         },
         fadeUp: {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(20px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(-100vh)",
-          },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
         "float-slow": "float 8s ease-in-out infinite",
         "scale-slow": "scale 6s ease-in-out infinite",
         "fade-up": "fadeUp 8s ease-out forwards",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       typography: {
         DEFAULT: {
@@ -64,13 +105,16 @@ const config: Config = {
           },
         },
       },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
     },
   },
   plugins: [
     require("@tailwindcss/typography"),
-    // NOTE: hoverを非活性な要素やタッチ操作に適用させない
-    // 参照: https://zenn.dev/kagan/articles/tailwind-css-custom-hover
-    plugin(function ({ addVariant }: { addVariant: any }) {
+    plugin(({ addVariant }: { addVariant: Function }) => {
       addVariant(
         "hover",
         "@media(hover:hover){ &:where(:any-link, :enabled, summary):hover }",
@@ -78,4 +122,5 @@ const config: Config = {
     }),
   ],
 };
+
 export default config;
