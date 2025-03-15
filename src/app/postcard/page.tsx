@@ -1,4 +1,4 @@
-// src/app/postcard/page.tsx
+// postcard/page.tsx などのクライアントコンポーネントでGTMイベントを送信する場合
 "use client";
 
 import { useEffect } from "react";
@@ -9,31 +9,19 @@ export default function PostcardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // dataLayerが定義されていない場合は初期化
-    if (typeof window !== "undefined") {
-      window.dataLayer = window.dataLayer || [];
-
-      // リダイレクトイベントをdataLayerにプッシュ
+    // dataLayerが既に存在することを前提として利用
+    if (typeof window !== "undefined" && window.dataLayer) {
       window.dataLayer.push({
         event: "postcard_redirect",
         event_category: "navigation",
         event_action: "redirect",
         event_label: "postcard_to_home",
       });
-
-      // コンソールに情報を出力（デバッグ用）
-      if (process.env.NODE_ENV === "development") {
-        console.log("Postcard redirect event pushed to dataLayer");
-      }
     }
 
-    // イベントが処理される時間を確保するため遅延させてからリダイレクト
-    const redirectTimer = setTimeout(() => {
+    setTimeout(() => {
       router.push("/");
     }, 500);
-
-    // クリーンアップ関数
-    return () => clearTimeout(redirectTimer);
   }, [router]);
 
   // ロード中の表示
