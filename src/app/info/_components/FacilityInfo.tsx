@@ -52,7 +52,7 @@ export const FacilityInfo = () => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#00e3cb] font-sans">
+    <div className="relative min-h-screen overflow-hidden font-sans">
       {/* モバイルでも安定したヘッダー */}
       <LogoLink />
 

@@ -94,7 +94,10 @@ export const Faq = () => {
         </AccordionItem>
 
         <AccordionItem value="remove-hook" className="border-b border-black/10">
-          <AccordionTrigger className="py-4 text-lg font-bold text-black">
+          <AccordionTrigger
+            id="remove-hook"
+            className="py-4 text-lg font-bold text-black"
+          >
             釣り針を魚から外す方法を教えてください
           </AccordionTrigger>
           <AccordionContent className="pb-6 text-lg text-black/80">

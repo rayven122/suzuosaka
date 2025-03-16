@@ -1,10 +1,11 @@
 import { FacilityInfo } from "./_components/FacilityInfo";
-import { Faq } from "./_components/Faq";
+import { FishingAssistant } from "./_components/FishingAssistant";
 
 export default function InfoPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#00e3cb] font-sans">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-main font-sans">
       <FacilityInfo />
+      <FishingAssistant />
     </div>
   );
 }
