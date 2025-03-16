@@ -57,7 +57,7 @@ export const FacilityInfo = () => {
       <LogoLink />
 
       {/* メインコンテンツ */}
-      <main className="container relative z-10 mx-auto mb-20 px-4 pb-6 pt-20 md:mb-0 md:py-12">
+      <main className="container relative z-10 mx-auto mb-20 px-4 pb-6 pt-20 md:mb-0 md:pb-12 md:pt-32">
         <div className="mx-auto max-w-3xl">
           <div className="mb-8 text-center md:mb-12">
             <h1 className="mb-3 text-3xl font-bold text-black md:mb-4 md:text-4xl lg:text-6xl">
@@ -79,7 +79,7 @@ export const FacilityInfo = () => {
                   className="items-center rounded-full py-2 text-base font-bold text-gray-600 data-[state=active]:bg-sky-400 data-[state=active]:text-white md:py-3 md:text-lg"
                 >
                   <div className="flex items-center justify-center">
-                    <h2 className="font-bold"> 釣り体験中によくある質問</h2>
+                    <h2 className="font-bold"> 釣り体験FAQ</h2>
                   </div>
                 </TabsTrigger>
                 <TabsTrigger
