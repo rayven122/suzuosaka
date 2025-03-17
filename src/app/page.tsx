@@ -10,6 +10,7 @@ import { CTA } from "./_components/Hero/CTA";
 export default function Home() {
   return (
     <main className="bg-gradient-main">
+      <h1 className="sr-only">川の家おさか~RIVER HOUSE OSAKA~</h1>
       <InstaRing />
       <div id="hero">
         <Hero />
