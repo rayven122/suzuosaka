@@ -531,12 +531,10 @@ export const FishingAssistant = () => {
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={handleKeyDown}
                       placeholder={getPlaceholderText()}
-                      className="h-12 max-h-32 min-h-12 w-full resize-none rounded-xl border border-gray-200 bg-gray-50 p-3 pr-12 focus:outline-none focus:ring-2"
+                      className={`h-12 max-h-32 min-h-12 w-full resize-none rounded-xl border bg-gray-50 p-3 pr-12 focus:outline-none focus:ring-2 focus:ring-opacity-30 focus:ring-[${themeColors.primary}] focus:border-[${themeColors.primary}]`}
                       style={{
                         color: themeColors.textDark,
                         borderColor: `${themeColors.secondary}30`,
-                        focusBorderColor: themeColors.primary,
-                        focusRingColor: `${themeColors.primary}30`,
                       }}
                       rows={1}
                       disabled={isLoading}
