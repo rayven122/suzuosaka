@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { LogoLink } from "../_components/common/LogoLink";
 import { motion } from "framer-motion";
-import { BubblesUnderMotion } from "../_components/common/BubbleUnderMotion";
 import { FaqList } from "../_components/common/Faq";
 import Link from "next/link";
 export default function Fishing() {

@@ -1,4 +1,3 @@
-// ファイル: app/news/page.tsx (サーバーコンポーネント)
 import Link from "next/link";
 import { format } from "date-fns";
 import { LogoLink2 } from "../_components/common/LogoLink2";
@@ -11,6 +10,12 @@ export const dynamic = "force-dynamic";
 export default async function NewsPage() {
   // 既存のclientファイルに定義されている関数を使用
   const newsList: News[] = await getAllNews();
+
+  // 更新日の新しい順にソート
+  newsList.sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
 
   // ページ表示用のニュース記事（最初の10件）
   const initialNewsList: News[] = newsList.slice(0, 10);
