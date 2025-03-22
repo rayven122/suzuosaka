@@ -94,7 +94,7 @@ export const Hero = () => {
             { text: "釣り体験", href: "/fishing" },
             {
               text: "予約",
-              href: "https://airrsv.net/osakano-osakana-village/calendar",
+              href: "/reservation",
             },
             { text: "アクセス", href: "#access" },
           ].map(({ text, href }, index) => (
@@ -109,7 +109,7 @@ export const Hero = () => {
                     }
                   : {})}
               >
-                <span className="hover:bg-secondary cursor-pointer border-2 border-black bg-primary transition-colors duration-300 [writing-mode:vertical-rl]">
+                <span className="cursor-pointer border-2 border-black bg-primary transition-colors duration-300 [writing-mode:vertical-rl] hover:bg-secondary">
                   {text}
                 </span>
               </Link>

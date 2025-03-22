@@ -19,7 +19,7 @@ export const Navigation = () => {
     {
       title: "RESERVATION",
       label: "予約",
-      href: "https://airrsv.net/osakano-osakana-village/calendar",
+      href: "/reservation",
       isExternal: true,
     },
     { title: "ACCESS", label: "アクセス", href: "/#access" },

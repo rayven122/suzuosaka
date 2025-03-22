@@ -33,7 +33,7 @@ export const CTA = () => {
                 className="w-full md:w-auto"
               >
                 <Link
-                  href="https://airrsv.net/osakano-osakana-village/calendar"
+                  href="/reservation"
                   className="block rounded-full bg-primary px-12 py-4 text-lg font-bold text-white shadow-md transition-all hover:bg-primary/90"
                   target="_blank"
                   rel="noopener noreferrer"

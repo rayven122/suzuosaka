@@ -73,7 +73,7 @@ export default function Fishing() {
             className=""
           >
             <Link
-              href="https://airrsv.net/osakano-osakana-village/calendar"
+              href="/reservation"
               className="inline-block rounded-full bg-white px-8 py-3 font-bold text-primary shadow-md transition-all hover:bg-primary hover:text-white"
               target="_blank"
               rel="noopener noreferrer"
@@ -154,6 +154,24 @@ export default function Fishing() {
               </table>
             </div>
           </div>
+        </div>
+        {/* 予約ページに遷移*/}
+        <div className="py4 flex justify-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className=""
+          >
+            <Link
+              href="/reservation"
+              className="inline-block rounded-full bg-white px-8 py-3 font-bold text-primary shadow-md transition-all hover:bg-primary hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              予約はこちら
+            </Link>
+          </motion.div>
         </div>
         {/* よくある質問 */}
         <FaqList />
