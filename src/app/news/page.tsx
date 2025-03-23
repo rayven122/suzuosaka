@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllNews, getNewsById } from "@/libs/client";
+import { getAllNews } from "@/libs/client";
 import { LogoLink2 } from "../_components/common/LogoLink2";
 
 export const metadata: Metadata = {

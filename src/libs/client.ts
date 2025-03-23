@@ -30,7 +30,10 @@ export const getAllNews = async (): Promise<News[]> => {
   try {
     const response = await client.getList<News>({
       endpoint: "news",
-      queries: { limit: 100 }, // 必要に応じて調整してください
+      queries: {
+        limit: 100,
+        orders: "-publishedAt", // 公開日の新しい順（降順）
+      },
     });
 
     console.log("ニュース取得結果:", response.contents[0]);

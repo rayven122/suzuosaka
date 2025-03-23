@@ -24,7 +24,7 @@ export default async function TagsPage() {
         <div className="mb-12 text-center">
           <Link
             href="/blogs"
-            className="mb-4 inline-block text-sm font-medium  hover:underline"
+            className="mb-4 inline-block text-sm font-medium hover:underline"
           >
             ← ブログトップに戻る
           </Link>
@@ -77,7 +77,7 @@ export default async function TagsPage() {
                 <Link
                   key={tag.name}
                   href={`/blogs/tags/${encodeURIComponent(tag.name)}`}
-                  className="group flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-blue-600 transition-all hover:bg-primary hover:text-white"
+                  className="group flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-blue-700 transition-all hover:bg-primary hover:text-white"
                 >
                   <span className="font-medium">#{tag.name}</span>
                   <span className="rounded-full bg-white px-2 py-0.5 text-xs text-gray-800 group-hover:bg-white group-hover:text-primary">

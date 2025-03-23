@@ -122,7 +122,7 @@ export default async function BlogPage() {
                     </div>
                     <Link
                       href={`/blogs/${blog.category.slug}/${blog.slug}`}
-                      className="text-sm font-medium  hover:underline"
+                      className="text-sm font-medium text-primary hover:underline"
                     >
                       続きを読む →
                     </Link>
