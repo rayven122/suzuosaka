@@ -208,16 +208,38 @@ export const getBlogById = async (id: string): Promise<Blog | null> => {
 
 // 特定のタグを含むブログ記事を取得する関数
 export const getBlogsByTag = async (tag: string): Promise<Blog[]> => {
-  // タグはカンマ区切りのテキストフィールドなので、含む検索を使用
-  const response = await client.getList<Blog>({
-    endpoint: "blogs",
-    queries: {
-      filters: `tags[contains]${tag}`,
-      orders: "-publishedAt",
-      limit: 100,
-    },
-  });
-  return response.contents;
+  try {
+    console.log(`「${tag}」タグで記事を検索します`);
+    // タグはカンマ区切りのテキストフィールドなので、含む検索を使用
+    const response = await client.getList<Blog>({
+      endpoint: "blogs",
+      queries: {
+        filters: `tags[contains]${tag}`,
+        orders: "-publishedAt",
+        limit: 100,
+      },
+    });
+
+    console.log(
+      `「${tag}」タグの記事: ${response.contents.length}件見つかりました`,
+    );
+
+    // クライアント側でもフィルタリングして確実に該当するタグを含む記事だけを返す
+    const filteredBlogs = response.contents.filter((blog) => {
+      if (!blog.tags) return false;
+      const blogTags = blog.tags.split(",").map((t) => t.trim());
+      return blogTags.includes(tag);
+    });
+
+    console.log(
+      `「${tag}」タグの記事（フィルタリング後）: ${filteredBlogs.length}件`,
+    );
+
+    return filteredBlogs;
+  } catch (error) {
+    console.error(`「${tag}」タグの記事検索中にエラーが発生しました:`, error);
+    return [];
+  }
 };
 
 // すべてのタグとその記事数を取得する関数

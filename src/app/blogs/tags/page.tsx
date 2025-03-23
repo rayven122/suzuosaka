@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getAllTags } from "@/libs/client";
 
+import { LogoLink2 } from "@/app/_components/common/LogoLink2";
+
 export const metadata: Metadata = {
   title: "タグ一覧 | 川の家おさかブログ",
   description:
@@ -15,13 +17,14 @@ export default async function TagsPage() {
   const tags = await getAllTags();
 
   return (
-    <div className="min-h-screen bg-gradient-main px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-main px-4 py-8 sm:px-6 lg:px-8">
+      <LogoLink2 />
       <div className="container mx-auto">
         {/* ヘッダー */}
         <div className="mb-12 text-center">
           <Link
             href="/blogs"
-            className="mb-4 inline-block text-sm font-medium text-primary hover:underline"
+            className="mb-4 inline-block text-sm font-medium  hover:underline"
           >
             ← ブログトップに戻る
           </Link>
@@ -74,10 +77,10 @@ export default async function TagsPage() {
                 <Link
                   key={tag.name}
                   href={`/blogs/tags/${encodeURIComponent(tag.name)}`}
-                  className="group flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary transition-all hover:bg-primary hover:text-white"
+                  className="group flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-blue-600 transition-all hover:bg-primary hover:text-white"
                 >
                   <span className="font-medium">#{tag.name}</span>
-                  <span className="rounded-full bg-white px-2 py-0.5 text-xs text-primary group-hover:bg-white group-hover:text-primary">
+                  <span className="rounded-full bg-white px-2 py-0.5 text-xs text-gray-800 group-hover:bg-white group-hover:text-primary">
                     {tag.count}
                   </span>
                 </Link>
