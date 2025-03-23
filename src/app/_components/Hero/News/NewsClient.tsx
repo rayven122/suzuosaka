@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { CalendarIcon } from "@heroicons/react/24/outline";
 
 type NewsItem = {
   id: string;
@@ -13,6 +14,9 @@ type NewsItem = {
 };
 
 const NewsCard = ({ news }: { news: NewsItem }) => {
+  // 日付文字列がある場合のみ日付を整形
+  const formattedDate = news.date ? formatDate(news.date) : "";
+
   return (
     <Link href={`/news/${news.id}`}>
       <motion.div
@@ -24,7 +28,9 @@ const NewsCard = ({ news }: { news: NewsItem }) => {
       >
         <div className="items-center gap-4 text-sm md:flex md:text-xl">
           <div className="flex items-center gap-2">
-            <div className="font-bold text-gray-500">{news.date}</div>
+            <div className="flex items-center gap-1 font-medium text-gray-600">
+              <time className="font-bold">{formattedDate}</time>
+            </div>
             <div className="h-4 w-4 rounded-full bg-primary" />
           </div>
           <div className="flex items-center justify-between gap-1">
@@ -36,6 +42,17 @@ const NewsCard = ({ news }: { news: NewsItem }) => {
     </Link>
   );
 };
+
+// 日付文字列をフォーマットする関数
+function formatDate(dateStr: string): string {
+  try {
+    const date = new Date(dateStr);
+    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+  } catch (e) {
+    // 日付のパースに失敗した場合はそのまま返す
+    return dateStr;
+  }
+}
 
 export const NewsClient = ({ newsItems }: { newsItems: NewsItem[] }) => {
   return (

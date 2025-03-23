@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllNews, getNewsBySlug } from "@/libs/client";
 import { LogoLink2 } from "@/app/_components/common/LogoLink2";
+import { CalendarIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   params: {
@@ -120,24 +121,36 @@ export default async function NewsPostPage({ params }: Props) {
 
             {/* 記事ヘッダー */}
             <div className="p-6 md:p-10">
-              <div className="mb-4 text-sm text-gray-500">
-                <time dateTime={news.publishedAt}>
-                  {new Date(news.publishedAt).toLocaleDateString("ja-JP", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
-                {news.updatedAt !== news.publishedAt && (
-                  <span className="ml-4">
-                    (更新日:{" "}
-                    {new Date(news.updatedAt).toLocaleDateString("ja-JP", {
+              <div className="mb-4 flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
+                  <CalendarIcon className="h-4 w-4 text-primary" />
+                  <time
+                    dateTime={news.publishedAt}
+                    className="text-sm font-medium"
+                  >
+                    公開:{" "}
+                    {new Date(news.publishedAt).toLocaleDateString("ja-JP", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
                     })}
-                    )
-                  </span>
+                  </time>
+                </div>
+                {news.updatedAt !== news.publishedAt && (
+                  <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
+                    <PencilIcon className="h-4 w-4 text-primary" />
+                    <time
+                      dateTime={news.updatedAt}
+                      className="text-sm font-medium"
+                    >
+                      更新:{" "}
+                      {new Date(news.updatedAt).toLocaleDateString("ja-JP", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </time>
+                  </div>
                 )}
               </div>
 

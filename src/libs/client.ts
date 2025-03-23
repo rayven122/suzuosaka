@@ -16,6 +16,7 @@ export type News = {
   title: string;
   content: string;
   slug: string;
+  description: string;
   eyecatch?: {
     url: string;
     width: number;

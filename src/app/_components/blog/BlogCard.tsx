@@ -13,11 +13,11 @@ export const BlogCard = ({
   showTags = true,
   activeTag,
 }: BlogCardProps) => {
-  const formattedDate = new Date(blog.publishedAt).toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  // 日付フォーマットの改善
+  const publishDate = new Date(blog.publishedAt);
+  const formattedDate = `${publishDate.getFullYear()}年${
+    publishDate.getMonth() + 1
+  }月${publishDate.getDate()}日`;
 
   // タグを分割して配列に変換
   const tags = blog.tags
@@ -82,7 +82,9 @@ export const BlogCard = ({
         )}
 
         <div className="flex items-center justify-between">
-          <div className="text-xs text-gray-500">{formattedDate}</div>
+          <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
+            <time dateTime={blog.publishedAt}>{formattedDate}</time>
+          </div>
           <Link
             href={`/blogs/${blog.category.slug}/${blog.slug}`}
             className="text-sm font-medium text-primary-dark hover:underline"

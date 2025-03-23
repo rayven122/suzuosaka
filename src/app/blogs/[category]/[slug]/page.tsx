@@ -8,6 +8,7 @@ import {
   getAllBlogCategories,
 } from "@/libs/client";
 import { LogoLink2 } from "@/app/_components/common/LogoLink2";
+import { CalendarIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   params: {
@@ -147,30 +148,44 @@ export default async function BlogPostPage({ params }: Props) {
                       {blog.category.name}
                     </span>
                   </Link>
-                  <time
-                    dateTime={blog.publishedAt}
-                    className="text-sm text-gray-500"
-                  >
-                    公開日:{" "}
-                    {new Date(blog.publishedAt).toLocaleDateString("ja-JP", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
-                  {blog.updatedAt !== blog.publishedAt && (
-                    <time
-                      dateTime={blog.updatedAt}
-                      className="text-sm text-gray-500"
-                    >
-                      更新日:{" "}
-                      {new Date(blog.updatedAt).toLocaleDateString("ja-JP", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </time>
-                  )}
+                  <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
+                      <CalendarIcon className="h-4 w-4 text-primary" />
+                      <time
+                        dateTime={blog.publishedAt}
+                        className="text-sm font-medium"
+                      >
+                        公開:{" "}
+                        {new Date(blog.publishedAt).toLocaleDateString(
+                          "ja-JP",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          },
+                        )}
+                      </time>
+                    </div>
+                    {blog.updatedAt !== blog.publishedAt && (
+                      <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
+                        <PencilIcon className="h-4 w-4 text-primary" />
+                        <time
+                          dateTime={blog.updatedAt}
+                          className="text-sm font-medium"
+                        >
+                          更新:{" "}
+                          {new Date(blog.updatedAt).toLocaleDateString(
+                            "ja-JP",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            },
+                          )}
+                        </time>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <h1 className="mb-6 font-shippori-antique-b1 text-3xl font-bold md:text-4xl">
