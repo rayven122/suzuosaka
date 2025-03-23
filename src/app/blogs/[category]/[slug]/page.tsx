@@ -8,7 +8,7 @@ import {
   getAllBlogCategories,
 } from "@/libs/client";
 import { LogoLink2 } from "@/app/_components/common/LogoLink2";
-import { CalendarIcon, PencilIcon } from "@heroicons/react/24/outline";
+import { CalendarIcon, PencilIcon } from "lucide-react";
 
 type Props = {
   params: {
