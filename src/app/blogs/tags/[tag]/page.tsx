@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { getAllBlogs, getBlogsByTag } from "@/libs/client";
 import { LogoLink2 } from "@/app/_components/common/LogoLink2";
+import { BlogHeader } from "@/app/_components/blog/BlogHeader";
+import { BlogCard } from "@/app/_components/blog/BlogCard";
+import { TagLink } from "@/app/_components/blog/TagLink";
 
 type Props = {
   params: {
@@ -69,114 +71,35 @@ export default async function TagPage({ params }: Props) {
       <div className="min-h-screen bg-gradient-main px-4 py-16 sm:px-6 lg:px-8">
         <LogoLink2 />
         <div className="container mx-auto">
-          {/* ヘッダー */}
-          <div className="mb-12 text-center">
-            <Link
-              href="/blogs"
-              className="mb-4 inline-block text-sm font-medium text-primary hover:underline"
-            >
-              ← ブログトップに戻る
-            </Link>
-            <Link
-              href="/blogs/tags"
-              className="mb-4 ml-4 inline-block text-sm font-medium text-primary hover:underline"
-            >
-              すべてのタグを見る
-            </Link>
-            <h1 className="mb-4 font-shippori-antique-b1 text-4xl font-bold md:text-5xl">
-              #{decodedTag}
-            </h1>
-            <p className="mx-auto max-w-2xl text-lg text-gray-600">
-              「{decodedTag}」のタグがついた記事一覧です。
-            </p>
-          </div>
+          <BlogHeader
+            title={`#${decodedTag}`}
+            description={`「${decodedTag}」のタグがついた記事一覧です。`}
+            backLink={{
+              href: "/blogs/tags",
+              text: "タグ一覧に戻る",
+            }}
+          />
 
           {/* 記事一覧 */}
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {blogs.map((blog) => {
-              // タグを分割して配列に変換
-              const tags = blog.tags
-                ? blog.tags
-                    .split(",")
-                    .map((tag) => tag.trim())
-                    .filter(Boolean)
-                : [];
+            {blogs.map((blog) => (
+              <BlogCard
+                key={blog.id}
+                blog={blog}
+                showTags={true}
+                activeTag={decodedTag}
+              />
+            ))}
+          </div>
 
-              return (
-                <div
-                  key={blog.id}
-                  className="overflow-hidden rounded-lg bg-white shadow-lg transition-all hover:shadow-xl"
-                >
-                  {blog.eyecatch && (
-                    <div className="relative h-48 w-full overflow-hidden">
-                      <Image
-                        src={blog.eyecatch.url}
-                        alt={blog.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-all hover:scale-105"
-                      />
-                    </div>
-                  )}
-                  <div className="p-4">
-                    <div className="mb-2">
-                      <Link href={`/blogs/${blog.category.slug}`}>
-                        <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary hover:bg-primary/20">
-                          {blog.category.name}
-                        </span>
-                      </Link>
-                    </div>
-                    <Link
-                      href={`/blogs/${blog.category.slug}/${blog.slug}`}
-                      className="block"
-                    >
-                      <h3 className="mb-2 text-xl font-bold transition-colors hover:text-primary">
-                        {blog.title}
-                      </h3>
-                    </Link>
-                    <p className="mb-4 text-sm text-gray-600">
-                      {blog.description}
-                    </p>
-
-                    {/* タグの表示 */}
-                    <div className="mb-3 flex flex-wrap gap-1">
-                      {tags.map((tag) => (
-                        <Link
-                          key={tag}
-                          href={`/blogs/tags/${encodeURIComponent(tag)}`}
-                          className={`inline-block rounded-full px-2 py-1 text-xs font-medium ${
-                            tag === decodedTag
-                              ? "bg-primary text-white"
-                              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-                          }`}
-                        >
-                          #{tag}
-                        </Link>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="text-xs text-gray-500">
-                        {new Date(blog.publishedAt).toLocaleDateString(
-                          "ja-JP",
-                          {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          },
-                        )}
-                      </div>
-                      <Link
-                        href={`/blogs/${blog.category.slug}/${blog.slug}`}
-                        className="text-sm font-medium text-primary hover:underline"
-                      >
-                        続きを読む →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          {/* ブログトップに戻るボタン */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/blogs"
+              className="rounded-full bg-primary px-6 py-3 text-white transition-all hover:bg-primary/80"
+            >
+              ブログトップに戻る
+            </Link>
           </div>
         </div>
       </div>

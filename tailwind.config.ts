@@ -21,7 +21,7 @@ const config: Config = {
           800: "#41494e",
           900: "#3c3c3c",
         },
-        primary: { DEFAULT: "#00E2FF", light: "#00E2FF", dark: "#00E2FF" },
+        primary: { DEFAULT: "#00E2FF", light: "#80FFFF", dark: "#00B3CC" },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",

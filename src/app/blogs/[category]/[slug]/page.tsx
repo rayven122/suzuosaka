@@ -7,6 +7,7 @@ import {
   getBlogBySlug,
   getAllBlogCategories,
 } from "@/libs/client";
+import { LogoLink2 } from "@/app/_components/common/LogoLink2";
 
 type Props = {
   params: {
@@ -88,8 +89,9 @@ export default async function BlogPostPage({ params }: Props) {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-gradient-main py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-main">
+      <LogoLink2 />
+      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         {/* パンくずリスト */}
         <nav className="mb-8 text-sm" aria-label="パンくずリスト">
           <ol className="flex flex-wrap items-center">
@@ -140,11 +142,10 @@ export default async function BlogPostPage({ params }: Props) {
               {/* 記事ヘッダー */}
               <div className="p-6 md:p-10">
                 <div className="mb-4 flex flex-wrap items-center gap-4">
-                  <Link
-                    href={`/blogs/${blog.category.slug}`}
-                    className="rounded-full bg-primary/10 px-4 py-1 text-sm font-semibold text-primary hover:bg-primary/20"
-                  >
-                    {blog.category.name}
+                  <Link href={`/blogs/${blog.category.slug}`}>
+                    <span className="inline-block rounded border-l-4 border-primary bg-primary-light/10 px-3 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary/10">
+                      {blog.category.name}
+                    </span>
                   </Link>
                   <time
                     dateTime={blog.publishedAt}
@@ -279,8 +280,8 @@ export default async function BlogPostPage({ params }: Props) {
                         href={`/blogs/${category.slug}`}
                         className={`block rounded px-3 py-2 transition-colors ${
                           category.id === blog.category.id
-                            ? "bg-primary/10 font-semibold text-primary"
-                            : "hover:bg-gray-100"
+                            ? "rounded border-l-4 border-primary bg-primary/5 px-3 py-2 font-semibold text-primary hover:bg-primary/10"
+                            : "rounded px-3 py-2 hover:bg-gray-200"
                         }`}
                       >
                         {category.name}
@@ -308,7 +309,7 @@ export default async function BlogPostPage({ params }: Props) {
                   <div className="mt-4 text-right">
                     <Link
                       href="/blogs/tags"
-                      className="text-sm font-medium text-primary hover:underline"
+                      className="text-sm font-medium text-primary-dark hover:underline"
                     >
                       すべてのタグを見る →
                     </Link>
