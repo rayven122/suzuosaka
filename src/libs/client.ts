@@ -27,11 +27,33 @@ export type News = {
 
 // すべてのニュース記事を取得する関数
 export const getAllNews = async (): Promise<News[]> => {
-  const response = await client.getList<News>({
-    endpoint: "news",
-    queries: { limit: 100 }, // 必要に応じて調整してください
-  });
-  return response.contents;
+  try {
+    const response = await client.getList<News>({
+      endpoint: "news",
+      queries: { limit: 100 }, // 必要に応じて調整してください
+    });
+
+    console.log("ニュース取得結果:", response.contents[0]);
+
+    // slugがない場合にidをslugとして使用
+    const processedNews = response.contents.map((news) => {
+      if (!news.slug) {
+        console.log(
+          `News ID: ${news.id} にslugがありません。IDをslugとして使用します。`,
+        );
+        return {
+          ...news,
+          slug: news.id,
+        };
+      }
+      return news;
+    });
+
+    return processedNews;
+  } catch (error) {
+    console.error("ニュース取得エラー:", error);
+    return [];
+  }
 };
 
 // 特定のIDのニュース記事を取得する関数
@@ -41,6 +63,18 @@ export const getNewsById = async (id: string): Promise<News | null> => {
       endpoint: "news",
       contentId: id,
     });
+
+    // slugがない場合にidをslugとして使用
+    if (!news.slug) {
+      console.log(
+        `News ID: ${news.id} にslugがありません。IDをslugとして使用します。`,
+      );
+      return {
+        ...news,
+        slug: news.id,
+      };
+    }
+
     return news;
   } catch (error) {
     console.error("Error fetching news by ID:", error);
@@ -51,6 +85,7 @@ export const getNewsById = async (id: string): Promise<News | null> => {
 // 特定のスラッグからニュース記事を取得する関数
 export const getNewsBySlug = async (slug: string): Promise<News | null> => {
   try {
+    // まずはスラッグで検索
     const response = await client.getList<News>({
       endpoint: "news",
       queries: {
@@ -58,9 +93,23 @@ export const getNewsBySlug = async (slug: string): Promise<News | null> => {
       },
     });
 
-    return response.contents[0] || null;
+    if (response.contents.length > 0) {
+      return response.contents[0];
+    }
+
+    // スラッグで見つからない場合、IDとして検索（互換性のため）
+    try {
+      const newsById = await getNewsById(slug);
+      if (newsById) {
+        return newsById;
+      }
+    } catch (e) {
+      console.log("IDでの検索に失敗:", e);
+    }
+
+    return null;
   } catch (error) {
-    console.error("Error fetching news by slug:", error);
+    console.error("スラッグでのニュース検索エラー:", error);
     return null;
   }
 };

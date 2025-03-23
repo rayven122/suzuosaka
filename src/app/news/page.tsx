@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllNews } from "@/libs/client";
+import { getAllNews, getNewsById } from "@/libs/client";
 import { LogoLink2 } from "../_components/common/LogoLink2";
 
 export const metadata: Metadata = {
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 
 export default async function NewsPage() {
   const newsItems = await getAllNews();
-  console.log(newsItems);
 
   return (
     <div className="min-h-screen bg-gradient-main px-4 py-16 sm:px-6 lg:px-8">
