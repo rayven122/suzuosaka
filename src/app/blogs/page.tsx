@@ -30,7 +30,7 @@ export default async function BlogPage() {
             ブログ
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
-            管理釣り場「川の家おさか」の釣り情報、初心者向けガイド、
+            飛騨小坂の釣り場「川の家おさか」の釣り情報、初心者向けガイド、
             釣った魚のレシピなど様々な情報を発信しています。
           </p>
         </div>

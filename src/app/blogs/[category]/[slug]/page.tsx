@@ -94,13 +94,13 @@ export default async function BlogPostPage({ params }: Props) {
         <nav className="mb-8 text-sm" aria-label="パンくずリスト">
           <ol className="flex flex-wrap items-center">
             <li className="flex items-center">
-              <Link href="/" className="text-primary hover:underline">
+              <Link href="/" className="hover:underline">
                 ホーム
               </Link>
               <span className="mx-2 text-gray-500">/</span>
             </li>
             <li className="flex items-center">
-              <Link href="/blogs" className="text-primary hover:underline">
+              <Link href="/blogs" className=" hover:underline">
                 ブログ
               </Link>
               <span className="mx-2 text-gray-500">/</span>
@@ -108,7 +108,7 @@ export default async function BlogPostPage({ params }: Props) {
             <li className="flex items-center">
               <Link
                 href={`/blogs/${blog.category.slug}`}
-                className="text-primary hover:underline"
+                className=" hover:underline"
               >
                 {blog.category.name}
               </Link>
