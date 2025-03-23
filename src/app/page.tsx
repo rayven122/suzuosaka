@@ -18,14 +18,14 @@ export default function Home() {
       <div id="brand-story">
         <BrandStory />
       </div>
-      <div id="news">
-        <NewsContainer />
-      </div>
       <div id="fishing">
         <Fishing />
       </div>
       <div id="eatery">
         <Eatery />
+      </div>
+      <div id="news">
+        <NewsContainer />
       </div>
       <div id="access">
         <Access />
