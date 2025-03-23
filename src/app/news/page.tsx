@@ -18,11 +18,11 @@ export default async function NewsPage() {
   const newsItems = await getAllNews();
 
   return (
-    <div className="min-h-screen bg-gradient-main px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-main px-4 py-8 sm:px-6 lg:px-8">
       <div className="container mx-auto">
         {/* ヘッダー */}
         <LogoLink2 />
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 pt-8">
           <BlogHeader
             title="お知らせ"
             description="「川の家おさかから」のお知らせや最新情報をお届けします。"

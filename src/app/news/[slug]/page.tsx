@@ -79,9 +79,10 @@ export default async function NewsPostPage({ params }: Props) {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-gradient-main py-16">
-      <div className="flex items-center gap-3">
-        <LogoLink2 />
+    <div className="min-h-screen bg-gradient-main py-8">
+      <LogoLink2 />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* パンくずリスト */}
         <nav className="mb-8 text-sm" aria-label="パンくずリスト">
           <ol className="flex flex-wrap items-center">
@@ -100,8 +101,6 @@ export default async function NewsPostPage({ params }: Props) {
             <li className="line-clamp-1 text-gray-500">{news.title}</li>
           </ol>
         </nav>
-      </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* ニュースコンテンツ */}
         <div className="mx-auto max-w-4xl">
           <article className="overflow-hidden rounded-lg bg-white/90 shadow-lg backdrop-blur-sm">
