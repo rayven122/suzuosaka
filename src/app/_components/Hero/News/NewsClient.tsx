@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarIcon } from "@heroicons/react/24/outline";
 
 type NewsItem = {
   id: string;
