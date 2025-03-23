@@ -5,7 +5,7 @@ import { getAllNews } from "@/libs/client";
 import { LogoLink2 } from "../_components/common/LogoLink2";
 
 export const metadata: Metadata = {
-  title: "お知らせ | 川の家おさか - 鈴小坂の管理釣り場",
+  title: "お知らせ | 川の家おさか - 下呂市小坂町の釣り場",
   description:
     "「川の家おさか」からのお知らせや最新情報をお届けします。イベント情報や営業案内など、重要なお知らせを確認いただけます。",
   alternates: {
@@ -26,7 +26,7 @@ export default async function NewsPage() {
             お知らせ
           </h1>
           <p className="mx-auto max-w-2xl text-center text-lg text-gray-600">
-            川の家おさかからのお知らせや最新情報をお届けします。
+            「川の家おさかから」のお知らせや最新情報をお届けします。
           </p>
         </div>
 

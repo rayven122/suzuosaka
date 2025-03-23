@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "ブログ | 川の家おさか - 鈴小坂の管理釣り場",
+  title: "ブログ | 川の家おさか - 下呂市小坂町の釣り場",
   description:
-    "川の家おさか - 鈴小坂の管理釣り場「川の家おさか」の釣り情報、初心者向けガイド、レシピなど、釣りに関する様々な情報を発信しています。",
+    "川の家おさか - 下呂市小坂町の釣り場「川の家おさか」の釣り情報、初心者向けガイド、レシピなど、釣りに関する様々な情報を発信しています。",
   alternates: {
     canonical: "https://www.suzu-osaka.com/blogs",
   },
@@ -30,7 +30,7 @@ export default async function BlogPage() {
             ブログ
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
-            飛騨小坂の釣り場「川の家おさか」の釣り情報、初心者向けガイド、
+            下呂市小坂町の釣り場「川の家おさか」の釣り情報、初心者向けガイド、
             釣った魚のレシピなど様々な情報を発信しています。
           </p>
         </div>
