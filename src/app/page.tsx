@@ -6,6 +6,7 @@ import { Fishing } from "./_components/Hero/Fishing";
 import { Eatery } from "./_components/Hero/Eatery";
 import { Access } from "./_components/Hero/Access";
 import { CTA } from "./_components/Hero/CTA";
+import { BlogSection } from "./_components/Hero/BlogSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,9 @@ export default function Home() {
       </div>
       <div id="eatery">
         <Eatery />
+      </div>
+      <div id="blog">
+        <BlogSection />
       </div>
       <div id="news">
         <NewsContainer />

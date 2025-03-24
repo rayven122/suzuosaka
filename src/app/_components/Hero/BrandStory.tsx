@@ -115,7 +115,7 @@ export const ScrollingMain = () => {
         transition={{ duration: 0.8 }}
         className="relative z-10 aspect-square size-[250px] overflow-hidden md:size-[450px]"
       >
-        <div className="absolute top-0 z-20 w-full rounded-t-[20px] border-2 border-b-0 border-black bg-gradient-main py-1 md:py-2">
+        <div className="absolute top-0 z-20 w-full rounded-t-[20px] border-2 border-b-0 border-black py-1 md:py-2">
           <Marquee
             gradient={false}
             speed={50}
