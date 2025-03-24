@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { Blog } from "@/libs/client";
-import { CalendarIcon } from "@heroicons/react/24/outline";
+import { CalendarIcon } from "lucide-react";
 
 type BlogSectionProps = {
   blogs: Blog[];
