@@ -89,7 +89,7 @@ export const BlogSection = ({ blogs }: BlogSectionProps) => {
                           <span className="text-gray-400">No Image</span>
                         </div>
                       )}
-                      <div className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-sm text-white">
+                      <div className="absolute left-4 top-4 rounded-full bg-primary-dark px-3 py-1 text-sm text-white">
                         {blogs[0].category.name}
                       </div>
                     </div>
@@ -231,7 +231,7 @@ const CompactBlogCard = ({ blog, index }: { blog: Blog; index: number }) => {
                 <span className="text-gray-400">No Image</span>
               </div>
             )}
-            <div className="absolute left-2 top-2 rounded-full bg-primary px-2 py-1 text-xs text-white">
+            <div className="absolute left-2 top-2 rounded-full bg-primary-dark px-2 py-1 text-xs text-white">
               {blog.category.name}
             </div>
           </div>
@@ -241,14 +241,14 @@ const CompactBlogCard = ({ blog, index }: { blog: Blog; index: number }) => {
               <CalendarIcon className="mr-1 h-3 w-3" />
               <p>{formatDate(blog.publishedAt)}</p>
             </div>
-            <h3 className="mb-1 line-clamp-2 text-sm font-bold group-hover:text-primary">
+            <h3 className="mb-1 line-clamp-2 text-sm font-bold text-gray-800 transition-colors group-hover:text-primary-dark">
               {blog.title}
             </h3>
 
             <div className="mt-auto flex justify-end pt-2">
               <motion.span
                 whileHover={{ x: 3 }}
-                className="text-xs font-medium text-primary"
+                className="text-xs font-semibold text-primary-dark transition-colors hover:text-primary"
               >
                 続きを読む →
               </motion.span>

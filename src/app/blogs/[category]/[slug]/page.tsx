@@ -74,22 +74,20 @@ export default async function BlogPostPage({ params }: Props) {
   // 新しいtagsフィールドを使用
   const tags = blog.tags && Array.isArray(blog.tags) ? blog.tags : [];
 
-  // 同じカテゴリの他の記事から3つ取得（関連記事用）
+  // 同じカテゴリの他の記事を取得（関連記事用）
   const allBlogs = await getAllBlogs();
-  const relatedBlogs = allBlogs
-    .filter(
-      (relatedBlog) =>
-        relatedBlog.category.id === blog.category.id &&
-        relatedBlog.id !== blog.id,
-    )
-    .slice(0, 3);
+  const relatedBlogs = allBlogs.filter(
+    (relatedBlog) =>
+      relatedBlog.category.id === blog.category.id &&
+      relatedBlog.id !== blog.id,
+  );
 
   return (
     <div className="min-h-screen bg-gradient-main">
       <LogoLink2 />
-      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 py-4 sm:py-8 sm:px-6 lg:px-8">
         {/* パンくずリスト */}
-        <nav className="mb-8 text-sm" aria-label="パンくずリスト">
+        <nav className="mb-4 text-xs sm:mb-8 sm:text-sm" aria-label="パンくずリスト">
           <ol className="flex flex-wrap items-center">
             <li className="flex items-center">
               <Link href="/" className="hover:underline">
@@ -117,13 +115,13 @@ export default async function BlogPostPage({ params }: Props) {
         </nav>
 
         {/* 記事コンテンツ */}
-        <div className="flex flex-col gap-8 lg:flex-row">
+        <div className="flex flex-col gap-6 sm:gap-8 lg:flex-row">
           {/* メインコンテンツ */}
           <article className="lg:w-3/4">
-            <div className="overflow-hidden rounded-lg bg-white/90 shadow-lg backdrop-blur-sm">
+            <div className="overflow-hidden rounded-[20px] border-2 border-black bg-white shadow-lg">
               {/* アイキャッチ画像 */}
               {blog.eyecatch && (
-                <div className="relative h-64 w-full overflow-hidden md:h-96">
+                <div className="relative h-48 w-full overflow-hidden sm:h-64 md:h-96">
                   <Image
                     src={blog.eyecatch.url}
                     alt={blog.title}
@@ -136,44 +134,44 @@ export default async function BlogPostPage({ params }: Props) {
               )}
 
               {/* 記事ヘッダー */}
-              <div className="p-6 md:p-10">
-                <div className="mb-4 flex flex-wrap items-center gap-4">
+              <div className="p-4 sm:p-6 md:p-10">
+                <div className="mb-3 flex flex-wrap items-center gap-2 sm:mb-4 sm:gap-4">
                   <Link href={`/blogs/${blog.category.slug}`}>
-                    <span className="inline-block rounded border-l-4 border-primary bg-primary-light/10 px-3 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary/10">
+                    <span className="inline-block rounded-full bg-primary-dark px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-primary sm:px-3 sm:py-1 sm:text-sm">
                       {blog.category.name}
                     </span>
                   </Link>
-                  <div className="flex flex-wrap items-center gap-4">
-                    <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
-                      <CalendarIcon className="h-4 w-4 text-primary" />
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                    <div className="flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 sm:px-3 sm:py-1">
+                      <CalendarIcon className="h-3 w-3 text-primary sm:h-4 sm:w-4" />
                       <time
                         dateTime={blog.publishedAt}
-                        className="text-sm font-medium"
+                        className="text-xs font-medium sm:text-sm"
                       >
                         公開:{" "}
                         {new Date(blog.publishedAt).toLocaleDateString(
                           "ja-JP",
                           {
                             year: "numeric",
-                            month: "long",
+                            month: "2-digit",
                             day: "numeric",
                           },
                         )}
                       </time>
                     </div>
                     {blog.updatedAt !== blog.publishedAt && (
-                      <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1">
-                        <PencilIcon className="h-4 w-4 text-primary" />
+                      <div className="flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 sm:px-3 sm:py-1">
+                        <PencilIcon className="h-3 w-3 text-primary sm:h-4 sm:w-4" />
                         <time
                           dateTime={blog.updatedAt}
-                          className="text-sm font-medium"
+                          className="text-xs font-medium sm:text-sm"
                         >
                           更新:{" "}
                           {new Date(blog.updatedAt).toLocaleDateString(
                             "ja-JP",
                             {
                               year: "numeric",
-                              month: "long",
+                              month: "2-digit",
                               day: "numeric",
                             },
                           )}
@@ -183,19 +181,19 @@ export default async function BlogPostPage({ params }: Props) {
                   </div>
                 </div>
 
-                <h1 className="mb-6 font-shippori-antique-b1 text-3xl font-bold md:text-4xl">
+                <h1 className="mb-4 font-shippori-antique-b1 text-2xl font-bold sm:mb-6 sm:text-3xl md:text-4xl">
                   {blog.title}
                 </h1>
 
                 {/* タグ */}
                 {tags.length > 0 && (
-                  <div className="mb-6">
-                    <div className="flex flex-wrap gap-2">
+                  <div className="mb-4 sm:mb-6">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {tags.map((tag) => (
                         <Link
                           key={tag.id}
                           href={`/blogs/tags/${tag.slug}`}
-                          className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200"
+                          className="inline-block rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-800 hover:bg-gray-200 sm:px-3 sm:py-1 sm:text-xs"
                           title={tag.description}
                         >
                           #{tag.name}
@@ -207,72 +205,142 @@ export default async function BlogPostPage({ params }: Props) {
 
                 {/* 本文 */}
                 <div
-                  className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-black prose-a:text-primary"
+                  className="prose prose-sm max-w-none prose-headings:font-bold prose-headings:text-black prose-a:text-primary-dark prose-a:underline sm:prose-base md:prose-lg"
                   dangerouslySetInnerHTML={{ __html: blog.content }}
                 />
 
                 {/* 記事下部CTAボタン */}
-                <div className="mt-12 flex flex-col items-center justify-center rounded-lg bg-primary/10 p-6 text-center sm:p-10">
-                  <h2 className="mb-4 text-xl font-bold">
-                    川の家おさかで釣り体験をしてみませんか？
-                  </h2>
-                  <p className="mb-6 text-gray-700">
-                    初心者の方も安心！スタッフがサポートします。
-                    家族や友人と楽しい思い出を作りましょう。
-                  </p>
-                  <Link
-                    href="/reservation"
-                    className="inline-block rounded-full bg-primary px-8 py-3 font-bold text-white shadow-md transition-all hover:bg-primary/80"
-                  >
-                    予約する
-                  </Link>
+                <div className="mt-8 overflow-hidden rounded-[20px] border-2 border-black bg-white shadow-lg sm:mt-12">
+                  <div className="bg-primary-dark p-4">
+                    <h2 className="text-xl font-bold text-white sm:text-2xl">
+                      🎣 川の家おさか 初心者歓迎！釣り体験
+                    </h2>
+                  </div>
+                  <div className="grid gap-4 p-4 md:grid-cols-2 md:gap-6 md:p-6">
+                    <div>
+                      <h3 className="mb-3 text-base font-bold text-primary-dark sm:text-lg">体験の流れ</h3>
+                      <ol className="space-y-2 text-sm text-gray-700 sm:text-base">
+                        <li><span className="font-semibold text-primary-dark">1.</span> 受付→道具レンタル（竿・餌など一式）</li>
+                        <li><span className="font-semibold text-primary-dark">2.</span> 釣り場へ移動（池・川・渓流から選択）</li>
+                        <li><span className="font-semibold text-primary-dark">3.</span> スタッフがサポート！初心者も安心</li>
+                        <li><span className="font-semibold text-primary-dark">4.</span> 釣った魚を天ぷらや塩焼きで堪能</li>
+                      </ol>
+                    </div>
+                    
+                    <div>
+                      <h3 className="mb-3 text-base font-bold text-primary-dark sm:text-lg">料金例（2名）</h3>
+                      <div className="rounded bg-gray-50 p-4 text-sm sm:text-base">
+                        <p>入場料：1,000円（500円×2）</p>
+                        <p>道具レンタル：3,500円～</p>
+                        <p className="mt-2 font-bold">合計：4,500円～</p>
+                        <p className="mt-2 text-xs text-gray-600 sm:text-sm">※魚代・調理代別途</p>
+                        <Link 
+                          href="/fishing" 
+                          className="mt-3 inline-block text-sm font-semibold text-primary-dark underline hover:text-primary sm:text-base"
+                        >
+                          料金詳細はこちら →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border-t bg-primary-light/10 p-5 text-center">
+                    <p className="mb-4 text-sm text-gray-700 sm:text-base">
+                      手ぶらでOK！家族や友人と楽しい思い出を作りませんか？
+                    </p>
+                    <Link
+                      href="/reservation"
+                      className="inline-flex items-center gap-2 rounded-full bg-primary-dark px-8 py-3 text-base font-bold text-white shadow-md transition-all hover:bg-primary sm:text-lg"
+                    >
+                      <span>予約する</span>
+                      <span>→</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* 関連記事 */}
             {relatedBlogs.length > 0 && (
-              <div className="mt-12">
-                <h2 className="mb-6 text-2xl font-bold">関連記事</h2>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {relatedBlogs.map((relatedBlog) => (
-                    <div
-                      key={relatedBlog.id}
-                      className="overflow-hidden rounded-lg bg-white shadow-lg transition-all hover:shadow-xl"
-                    >
-                      {relatedBlog.eyecatch && (
-                        <div className="relative h-40 w-full overflow-hidden">
-                          <Image
-                            src={relatedBlog.eyecatch.url}
-                            alt={relatedBlog.title}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover transition-all hover:scale-105"
-                          />
-                        </div>
-                      )}
-                      <div className="p-4">
-                        <Link
-                          href={`/blogs/${relatedBlog.category.slug}/${relatedBlog.slug}`}
-                          className="block"
-                        >
-                          <h3 className="mb-2 text-lg font-bold transition-colors hover:text-primary">
-                            {relatedBlog.title}
-                          </h3>
-                        </Link>
-                        <div className="text-xs text-gray-500">
-                          {new Date(relatedBlog.publishedAt).toLocaleDateString(
-                            "ja-JP",
-                            {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            },
-                          )}
-                        </div>
+              <div className="mt-8 sm:mt-12">
+                <div className="overflow-hidden rounded-[20px] border-2 border-black bg-white shadow-lg">
+                  <div className="bg-primary-dark p-4">
+                    <h2 className="text-xl font-bold text-white sm:text-2xl">
+                      こちらもおすすめ
+                    </h2>
+                  </div>
+                  <div className="p-4 sm:p-6">
+                    <div className="overflow-x-auto">
+                      <div className="flex gap-4 pb-2" style={{ minWidth: 'max-content' }}>
+                        {relatedBlogs.map((relatedBlog) => (
+                          <Link
+                            key={relatedBlog.id}
+                            href={`/blogs/${relatedBlog.category.slug}/${relatedBlog.slug}`}
+                            className="group block flex-shrink-0"
+                            style={{ width: '280px' }}
+                          >
+                            <div className="overflow-hidden rounded-[15px] border-2 border-black bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                              {relatedBlog.eyecatch ? (
+                                <div className="relative h-48 w-full overflow-hidden">
+                                  <Image
+                                    src={relatedBlog.eyecatch.url}
+                                    alt={relatedBlog.title}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                  <div className="absolute bottom-2 left-2 right-2 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary-dark">
+                                      続きを読む →
+                                    </span>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="flex h-48 w-full items-center justify-center bg-gradient-to-br from-primary-light to-primary">
+                                  <span className="text-white">No Image</span>
+                                </div>
+                              )}
+                              <div className="p-4">
+                                <div className="mb-2 flex items-center gap-2">
+                                  <span className="inline-block rounded-full bg-primary-dark/10 px-2 py-0.5 text-xs font-medium text-primary-dark">
+                                    {relatedBlog.category.name}
+                                  </span>
+                                  <div className="flex items-center gap-1 text-xs text-gray-500">
+                                    <CalendarIcon className="h-3 w-3" />
+                                    <time>
+                                      {new Date(relatedBlog.publishedAt).toLocaleDateString(
+                                        "ja-JP",
+                                        {
+                                          year: "numeric",
+                                          month: "2-digit",
+                                          day: "numeric",
+                                        },
+                                      )}
+                                    </time>
+                                  </div>
+                                </div>
+                                <h3 className="line-clamp-2 text-base font-bold text-gray-800 transition-colors duration-300 group-hover:text-primary-dark sm:text-lg">
+                                  {relatedBlog.title}
+                                </h3>
+                                {relatedBlog.description && (
+                                  <p className="mt-2 line-clamp-2 text-xs text-gray-600 sm:text-sm">
+                                    {relatedBlog.description}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
                       </div>
                     </div>
-                  ))}
+                  </div>
+                  {/* スクロールヒント */}
+                  {relatedBlogs.length > 1 && (
+                    <div className="pb-4 text-center">
+                      <p className="text-xs text-gray-500">← 横にスクロールできます →</p>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -280,67 +348,80 @@ export default async function BlogPostPage({ params }: Props) {
 
           {/* サイドバー */}
           <aside className="lg:w-1/4">
-            <div className="sticky top-24 space-y-8">
+            <div className="sticky top-24 space-y-6">
               {/* カテゴリナビゲーション */}
-              <div className="rounded-lg bg-white/90 p-6 shadow-lg backdrop-blur-sm">
-                <h2 className="mb-4 text-xl font-bold">カテゴリ</h2>
-                <ul className="space-y-2">
-                  {categories.map((category) => (
-                    <li key={category.id}>
-                      <Link
-                        href={`/blogs/${category.slug}`}
-                        className={`block rounded px-3 py-2 transition-colors ${
-                          category.id === blog.category.id
-                            ? "rounded border-l-4 border-primary bg-primary/5 px-3 py-2 font-semibold text-primary hover:bg-primary/10"
-                            : "rounded px-3 py-2 hover:bg-gray-200"
-                        }`}
-                      >
-                        {category.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+              <div className="overflow-hidden rounded-[20px] border-2 border-black bg-white shadow-lg">
+                <div className="bg-primary-dark p-4">
+                  <h2 className="text-xl font-bold text-white">カテゴリ</h2>
+                </div>
+                <div className="p-6">
+                  <ul className="space-y-2">
+                    {categories.map((category) => (
+                      <li key={category.id}>
+                        <Link
+                          href={`/blogs/${category.slug}`}
+                          className={`block rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                            category.id === blog.category.id
+                              ? "bg-primary-dark text-white hover:bg-primary"
+                              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          }`}
+                        >
+                          {category.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               {/* タグクラウド */}
               {tags.length > 0 && (
-                <div className="rounded-lg bg-white/90 p-6 shadow-lg backdrop-blur-sm">
-                  <h2 className="mb-4 text-xl font-bold">タグ</h2>
-                  <div className="flex flex-wrap gap-2">
-                    {tags.map((tag) => (
-                      <Link
-                        key={tag.id}
-                        href={`/blogs/tags/${tag.slug}`}
-                        className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200"
-                        title={tag.description}
-                      >
-                        #{tag.name}
-                      </Link>
-                    ))}
+                <div className="overflow-hidden rounded-[20px] border-2 border-black bg-white shadow-lg">
+                  <div className="bg-primary-dark p-4">
+                    <h2 className="text-xl font-bold text-white">タグ</h2>
                   </div>
-                  <div className="mt-4 text-right">
-                    <Link
-                      href="/blogs/tags"
-                      className="text-sm font-medium text-primary-dark hover:underline"
-                    >
-                      すべてのタグを見る →
-                    </Link>
+                  <div className="p-6">
+                    <div className="flex flex-wrap gap-2">
+                      {tags.map((tag) => (
+                        <Link
+                          key={tag.id}
+                          href={`/blogs/tags/${tag.slug}`}
+                          className="inline-block rounded-full bg-primary-dark/10 px-3 py-1 text-xs font-medium text-primary-dark transition-colors hover:bg-primary-dark hover:text-white"
+                          title={tag.description}
+                        >
+                          #{tag.name}
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="mt-4 text-right">
+                      <Link
+                        href="/blogs/tags"
+                        className="text-sm font-semibold text-primary-dark transition-colors hover:text-primary"
+                      >
+                        すべてのタグを見る →
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
 
               {/* 予約CTAボタン */}
-              <div className="rounded-lg bg-white/90 p-6 shadow-lg backdrop-blur-sm">
-                <h2 className="mb-4 text-lg font-bold">川の家へのご予約</h2>
-                <p className="mb-4 text-sm text-gray-700">
-                  釣り体験のご予約はオンラインで簡単にできます。
-                </p>
-                <Link
-                  href="/reservation"
-                  className="block rounded-full bg-primary px-4 py-2 text-center font-bold text-white transition-all hover:bg-primary/80"
-                >
-                  今すぐ予約する
-                </Link>
+              <div className="overflow-hidden rounded-[20px] border-2 border-black bg-white shadow-lg">
+                <div className="bg-primary-dark p-4">
+                  <h2 className="text-xl font-bold text-white">川の家おさか</h2>
+                </div>
+                <div className="p-6">
+                  <p className="mb-6 text-sm text-gray-700">
+                    釣り体験のご予約はオンラインで簡単にできます。
+                  </p>
+                  <Link
+                    href="/reservation"
+                    className="flex items-center justify-center gap-2 rounded-full bg-primary-dark px-6 py-3 font-bold text-white transition-all hover:bg-primary"
+                  >
+                    <span>今すぐ予約する</span>
+                    <span className="text-xl">→</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </aside>
