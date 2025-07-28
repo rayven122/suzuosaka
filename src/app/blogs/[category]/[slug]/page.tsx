@@ -71,13 +71,8 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  // タグを分割して配列に変換
-  const tags = blog.tags
-    ? blog.tags
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter(Boolean)
-    : [];
+  // 新しいtagsフィールドを使用
+  const tags = blog.tags && Array.isArray(blog.tags) ? blog.tags : [];
 
   // 同じカテゴリの他の記事から3つ取得（関連記事用）
   const allBlogs = await getAllBlogs();
@@ -198,11 +193,12 @@ export default async function BlogPostPage({ params }: Props) {
                     <div className="flex flex-wrap gap-2">
                       {tags.map((tag) => (
                         <Link
-                          key={tag}
-                          href={`/blogs/tags/${encodeURIComponent(tag)}`}
+                          key={tag.id}
+                          href={`/blogs/tags/${tag.slug}`}
                           className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200"
+                          title={tag.description}
                         >
-                          #{tag}
+                          #{tag.name}
                         </Link>
                       ))}
                     </div>
@@ -313,11 +309,12 @@ export default async function BlogPostPage({ params }: Props) {
                   <div className="flex flex-wrap gap-2">
                     {tags.map((tag) => (
                       <Link
-                        key={tag}
-                        href={`/blogs/tags/${encodeURIComponent(tag)}`}
+                        key={tag.id}
+                        href={`/blogs/tags/${tag.slug}`}
                         className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200"
+                        title={tag.description}
                       >
-                        #{tag}
+                        #{tag.name}
                       </Link>
                     ))}
                   </div>
@@ -380,7 +377,7 @@ export default async function BlogPostPage({ params }: Props) {
               "@type": "WebPage",
               "@id": `https://www.suzu-osaka.com/blogs/${blog.category.slug}/${blog.slug}`,
             },
-            keywords: tags.join(", "),
+            keywords: tags.map(tag => tag.name).join(", "),
           }),
         }}
       />

@@ -19,13 +19,8 @@ export const BlogCard = ({
     publishDate.getMonth() + 1
   }月${publishDate.getDate()}日`;
 
-  // タグを分割して配列に変換
-  const tags = blog.tags
-    ? blog.tags
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter(Boolean)
-    : [];
+  // 新しいtagsフィールドを使用
+  const tags = blog.tags && Array.isArray(blog.tags) ? blog.tags : [];
 
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-lg transition-all hover:shadow-xl">
@@ -67,15 +62,16 @@ export const BlogCard = ({
           <div className="mb-3 flex flex-wrap gap-1">
             {tags.map((tag) => (
               <Link
-                key={tag}
-                href={`/blogs/tags/${encodeURIComponent(tag)}`}
+                key={tag.id}
+                href={`/blogs/tags/${tag.slug}`}
                 className={`inline-block rounded-full px-2 py-1 text-xs font-medium ${
-                  tag === activeTag
+                  tag.slug === activeTag
                     ? "bg-primary text-white"
                     : "bg-gray-100 text-gray-800 hover:bg-gray-200"
                 }`}
+                title={tag.description}
               >
-                #{tag}
+                #{tag.name}
               </Link>
             ))}
           </div>

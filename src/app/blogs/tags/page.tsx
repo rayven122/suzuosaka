@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { getAllTags } from "@/libs/client";
+import { getAllTagsWithCount } from "@/libs/client";
 import { LogoLink2 } from "@/app/_components/common/LogoLink2";
 import { BlogHeader } from "@/app/_components/blog/BlogHeader";
 import { TagLink } from "@/app/_components/blog/TagLink";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function TagsPage() {
-  const tags = await getAllTags();
+  const tagsWithCount = await getAllTagsWithCount();
 
   return (
     <div className="min-h-screen bg-gradient-main px-4 py-8 sm:px-6 lg:px-8">
@@ -31,11 +31,11 @@ export default async function TagsPage() {
         />
 
         {/* タグ一覧 */}
-        {tags.length > 0 ? (
+        {tagsWithCount.length > 0 ? (
           <div className="mx-auto max-w-4xl rounded-lg bg-white/80 p-8 shadow-lg backdrop-blur-sm">
             <div className="flex flex-wrap gap-4">
-              {tags.map((tag) => (
-                <TagLink key={tag.name} tag={tag.name} count={tag.count} />
+              {tagsWithCount.map((item) => (
+                <TagLink key={item.tag.id} tag={item.tag} count={item.count} />
               ))}
             </div>
           </div>
@@ -54,15 +54,15 @@ export default async function TagsPage() {
         )}
 
         {/* 人気のタグ (もしあれば) */}
-        {tags.length > 5 && (
+        {tagsWithCount.length > 5 && (
           <div className="mt-12">
             <h2 className="mb-6 text-2xl font-bold">人気のタグ</h2>
             <div className="flex flex-wrap gap-4">
-              {tags.slice(0, 5).map((tag) => (
+              {tagsWithCount.slice(0, 5).map((item) => (
                 <TagLink
-                  key={tag.name}
-                  tag={tag.name}
-                  count={tag.count}
+                  key={item.tag.id}
+                  tag={item.tag}
+                  count={item.count}
                   isPopular={true}
                 />
               ))}
