@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: "https://www.suzu-osaka.com/",
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 1.0,
     },
     {
@@ -22,77 +22,83 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: "https://www.suzu-osaka.com/facility",
+      url: "https://www.suzu-osaka.com/fishing",
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: "https://www.suzu-osaka.com/eatery",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: "https://www.suzu-osaka.com/access",
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://www.suzu-osaka.com/price",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.7,
     },
     {
       url: "https://www.suzu-osaka.com/reservation",
       lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.suzu-osaka.com/contact",
+      lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.6,
+    },
+    {
+      url: "https://www.suzu-osaka.com/info",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
     },
     {
       url: "https://www.suzu-osaka.com/news",
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 0.8,
     },
     {
       url: "https://www.suzu-osaka.com/blogs",
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 0.8,
     },
     {
       url: "https://www.suzu-osaka.com/blogs/all",
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 0.7,
     },
     {
       url: "https://www.suzu-osaka.com/blogs/tags",
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: "https://www.suzu-osaka.com/contact",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.6,
     },
   ];
 
   // ブログカテゴリページ
   const categories = await getAllBlogCategories();
   const categoryPages = categories.map((category) => ({
-    url: `https://www.suzu-osaka.com/blogs/${category.slug}`,
+    url: `https://www.suzu-osaka.com/blogs/${category.id}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
-    priority: 0.7,
+    priority: 0.6,
   }));
 
   // ブログ記事ページ
   const blogs = await getAllBlogs();
   const blogPages = blogs.map((blog) => ({
-    url: `https://www.suzu-osaka.com/blogs/${blog.category.slug}/${blog.slug}`,
+    url: `https://www.suzu-osaka.com/blogs/${blog.category.id}/${blog.slug}`,
     lastModified: new Date(blog.updatedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
   }));
 
   // タグページ
@@ -101,7 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `https://www.suzu-osaka.com/blogs/tags/${encodeURIComponent(tag.name)}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
-    priority: 0.6,
+    priority: 0.5,
   }));
 
   // ニュース記事ページ

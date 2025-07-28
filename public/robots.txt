@@ -1,0 +1,15 @@
+# robots.txt for https://www.suzu-osaka.com
+
+# Allow all bots
+User-agent: *
+Allow: /
+
+# Disallow admin or API routes
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.suzu-osaka.com/sitemap.xml
+
+# LLMs.txt for AI crawlers
+# See: https://www.suzu-osaka.com/llms.txt
+# See: https://www.suzu-osaka.com/llms-full.txt
