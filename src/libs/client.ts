@@ -125,6 +125,18 @@ export type BlogCategory = {
   slug: string;
 };
 
+// タグの型定義
+export type Tag = {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+};
+
 // ブログ記事の型定義
 export type Blog = {
   id: string;
@@ -138,7 +150,7 @@ export type Blog = {
   };
   category: BlogCategory;
   slug: string;
-  tags: string; // カンマ区切りのタグ
+  tags?: Tag[]; // タグのリレーション
   publishedAt: string;
   updatedAt: string;
 };
@@ -210,66 +222,89 @@ export const getBlogById = async (id: string): Promise<Blog | null> => {
   }
 };
 
-// 特定のタグを含むブログ記事を取得する関数
-export const getBlogsByTag = async (tag: string): Promise<Blog[]> => {
+// 特定のタグスラッグを含むブログ記事を取得する関数
+export const getBlogsByTagSlug = async (tagSlug: string): Promise<Blog[]> => {
   try {
-    console.log(`「${tag}」タグで記事を検索します`);
-    // タグはカンマ区切りのテキストフィールドなので、含む検索を使用
+    console.log(`タグスラッグ「${tagSlug}」で記事を検索します`);
+    
+    // まずタグIDを取得
+    const tagResponse = await client.getList<Tag>({
+      endpoint: "tags",
+      queries: {
+        filters: `slug[equals]${tagSlug}`,
+        limit: 1,
+      },
+    });
+
+    if (tagResponse.contents.length === 0) {
+      console.log(`タグスラッグ「${tagSlug}」が見つかりません`);
+      return [];
+    }
+
+    const tag = tagResponse.contents[0];
+    
+    // タグIDでブログ記事を検索
     const response = await client.getList<Blog>({
       endpoint: "blogs",
       queries: {
-        filters: `tags[contains]${tag}`,
+        filters: `tags[contains]${tag.id}`,
         orders: "-publishedAt",
         limit: 100,
       },
     });
 
     console.log(
-      `「${tag}」タグの記事: ${response.contents.length}件見つかりました`,
+      `タグ「${tag.name}」の記事: ${response.contents.length}件見つかりました`,
     );
 
-    // クライアント側でもフィルタリングして確実に該当するタグを含む記事だけを返す
-    const filteredBlogs = response.contents.filter((blog) => {
-      if (!blog.tags) return false;
-      const blogTags = blog.tags.split(",").map((t) => t.trim());
-      return blogTags.includes(tag);
-    });
-
-    console.log(
-      `「${tag}」タグの記事（フィルタリング後）: ${filteredBlogs.length}件`,
-    );
-
-    return filteredBlogs;
+    return response.contents;
   } catch (error) {
-    console.error(`「${tag}」タグの記事検索中にエラーが発生しました:`, error);
+    console.error(`タグスラッグ「${tagSlug}」の記事検索中にエラーが発生しました:`, error);
+    return [];
+  }
+};
+
+// すべてのタグを取得する関数
+export const getAllTags = async (): Promise<Tag[]> => {
+  try {
+    const response = await client.getList<Tag>({
+      endpoint: "tags",
+      queries: {
+        limit: 100,
+        orders: "slug",
+      },
+    });
+    return response.contents;
+  } catch (error) {
+    console.error("タグの取得中にエラーが発生しました:", error);
     return [];
   }
 };
 
 // すべてのタグとその記事数を取得する関数
-export const getAllTags = async (): Promise<
-  { name: string; count: number }[]
+export const getAllTagsWithCount = async (): Promise<
+  { tag: Tag; count: number }[]
 > => {
-  const blogs = await getAllBlogs();
+  const [tags, blogs] = await Promise.all([getAllTags(), getAllBlogs()]);
 
-  // タグの出現回数を集計
-  const tagCounts: Record<string, number> = {};
+  // タグごとの記事数を集計
+  const tagCountMap = new Map<string, number>();
+  
   blogs.forEach((blog) => {
-    if (blog.tags) {
-      blog.tags.split(",").forEach((tag) => {
-        const trimmedTag = tag.trim();
-        if (trimmedTag) {
-          tagCounts[trimmedTag] = (tagCounts[trimmedTag] || 0) + 1;
-        }
+    if (blog.tags && Array.isArray(blog.tags)) {
+      blog.tags.forEach((tag) => {
+        const currentCount = tagCountMap.get(tag.id) || 0;
+        tagCountMap.set(tag.id, currentCount + 1);
       });
     }
   });
 
-  // タグ情報を配列に変換して返す
-  return Object.keys(tagCounts)
-    .map((name) => ({
-      name,
-      count: tagCounts[name],
+  // タグ情報と記事数を結合
+  return tags
+    .map((tag) => ({
+      tag,
+      count: tagCountMap.get(tag.id) || 0,
     }))
-    .sort((a, b) => b.count - a.count); // 出現頻度順にソート
+    .filter((item) => item.count > 0) // 記事が存在するタグのみ
+    .sort((a, b) => b.count - a.count); // 記事数の多い順にソート
 };

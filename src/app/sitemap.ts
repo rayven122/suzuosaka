@@ -104,7 +104,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // タグページ
   const tags = await getAllTags();
   const tagPages = tags.map((tag) => ({
-    url: `https://www.suzu-osaka.com/blogs/tags/${encodeURIComponent(tag.name)}`,
+    url: `https://www.suzu-osaka.com/blogs/tags/${tag.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.5,

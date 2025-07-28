@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getAllBlogs, getBlogsByTag } from "@/libs/client";
+import { getAllTags, getBlogsByTagSlug } from "@/libs/client";
 import { LogoLink2 } from "@/app/_components/common/LogoLink2";
 import { BlogHeader } from "@/app/_components/blog/BlogHeader";
 import { BlogCard } from "@/app/_components/blog/BlogCard";
@@ -15,13 +15,21 @@ type Props = {
 
 // 動的メタデータの生成
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const decodedTag = decodeURIComponent(params.tag);
+  const tagSlug = params.tag;
+  const tags = await getAllTags();
+  const tag = tags.find(t => t.slug === tagSlug);
+  
+  if (!tag) {
+    return {
+      title: "タグが見つかりません | 川の家おさかブログ",
+    };
+  }
 
   return {
-    title: `「${decodedTag}」のタグがついた記事 | 川の家おさかブログ`,
-    description: `川の家おさかブログの「${decodedTag}」タグがついている記事一覧です。`,
+    title: `「${tag.name}」のタグがついた記事 | 川の家おさかブログ`,
+    description: tag.description || `川の家おさかブログの「${tag.name}」タグがついている記事一覧です。`,
     alternates: {
-      canonical: `https://www.suzu-osaka.com/blogs/tags/${params.tag}`,
+      canonical: `https://www.suzu-osaka.com/blogs/tags/${tag.slug}`,
     },
   };
 }
@@ -29,25 +37,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // 静的パラメータを生成
 export async function generateStaticParams() {
   try {
-    const blogs = await getAllBlogs();
+    const tags = await getAllTags();
 
-    // すべてのタグを収集
-    const allTags = new Set<string>();
-    blogs.forEach((blog) => {
-      if (blog.tags) {
-        blog.tags.split(",").forEach((tag) => {
-          const trimmedTag = tag.trim();
-          if (trimmedTag) {
-            allTags.add(trimmedTag);
-          }
-        });
-      }
-    });
+    console.log(`静的パラメータ生成: ${tags.length}個のタグを検出しました`);
 
-    console.log(`静的パラメータ生成: ${allTags.size}個のタグを検出しました`);
-
-    return Array.from(allTags).map((tag) => ({
-      tag: encodeURIComponent(tag),
+    return tags.map((tag) => ({
+      tag: tag.slug,
     }));
   } catch (error) {
     console.error("タグの静的パラメータ生成中にエラーが発生しました:", error);
@@ -57,13 +52,21 @@ export async function generateStaticParams() {
 
 export default async function TagPage({ params }: Props) {
   try {
-    const decodedTag = decodeURIComponent(params.tag);
-    console.log(`タグページ表示: 「${decodedTag}」`);
+    const tagSlug = params.tag;
+    console.log(`タグページ表示: スラッグ「${tagSlug}」`);
 
-    const blogs = await getBlogsByTag(decodedTag);
+    const tags = await getAllTags();
+    const tag = tags.find(t => t.slug === tagSlug);
+    
+    if (!tag) {
+      console.log(`スラッグ「${tagSlug}」のタグが見つかりません`);
+      notFound();
+    }
+
+    const blogs = await getBlogsByTagSlug(tagSlug);
 
     if (blogs.length === 0) {
-      console.log(`「${decodedTag}」のタグがついた記事が見つかりません`);
+      console.log(`「${tag.name}」のタグがついた記事が見つかりません`);
       notFound();
     }
 
@@ -72,8 +75,8 @@ export default async function TagPage({ params }: Props) {
         <LogoLink2 />
         <div className="container mx-auto">
           <BlogHeader
-            title={`#${decodedTag}`}
-            description={`「${decodedTag}」のタグがついた記事一覧です。`}
+            title={`#${tag.name}`}
+            description={tag.description || `「${tag.name}」のタグがついた記事一覧です。`}
             backLink={{
               href: "/blogs/tags",
               text: "タグ一覧に戻る",
@@ -87,7 +90,7 @@ export default async function TagPage({ params }: Props) {
                 key={blog.id}
                 blog={blog}
                 showTags={true}
-                activeTag={decodedTag}
+                activeTag={tagSlug}
               />
             ))}
           </div>
