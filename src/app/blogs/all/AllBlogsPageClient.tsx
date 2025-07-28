@@ -15,7 +15,7 @@ type AllBlogsPageClientProps = {
 };
 
 export function AllBlogsPageClient({ blogs, categories }: AllBlogsPageClientProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   
   // カテゴリーでフィルタリング
   const filteredBlogs = selectedCategory
@@ -72,7 +72,7 @@ export function AllBlogsPageClient({ blogs, categories }: AllBlogsPageClientProp
               return acc;
             }, {} as Record<string, number>)}
             variant="filter"
-            onCategoryClick={setSelectedCategory}
+            onCategoryClick={(slug) => setSelectedCategory(slug ?? undefined)}
           />
         </motion.div>
 
@@ -104,7 +104,7 @@ export function AllBlogsPageClient({ blogs, categories }: AllBlogsPageClientProp
               該当する記事はありません。
             </p>
             <button
-              onClick={() => setSelectedCategory(null)}
+              onClick={() => setSelectedCategory(undefined)}
               className="rounded-full border-2 border-black bg-gradient-main px-6 py-2 font-medium transition-all hover:bg-primary hover:text-white"
             >
               すべての記事を表示

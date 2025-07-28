@@ -42,7 +42,7 @@ export const CategoryNavigation = ({
           <button
             onClick={() => onCategoryClick?.(null)}
             className={`group relative overflow-hidden rounded-full border-2 border-black px-4 py-2 text-sm font-medium transition-all hover:shadow-md ${
-              activeCategory === null || activeCategory === "all" 
+              activeCategory === undefined || activeCategory === "all" 
                 ? "bg-primary-dark text-white" 
                 : "bg-white hover:border-primary hover:text-primary"
             }`}
